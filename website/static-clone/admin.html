@@ -32,8 +32,62 @@
     .admin-product-actions { display: grid; justify-items: end; gap: 10px; }
     .admin-edit-button { min-height: 38px; padding: 0 14px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
     .admin-hint { margin: -10px 0 18px; color: var(--muted); font-size: 0.9rem; }
-    .admin-modal { max-width: 600px; width: 90%; }
-    @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } .admin-sidebar { grid-template-columns: repeat(2, 1fr); display: grid; position: static; } .admin-product-card { grid-template-columns: 1fr; } .admin-product-image { width: 100%; height: 180px; } .admin-product-actions { justify-items: start; } .admin-product-price { text-align: left; } }
+    .admin-modal { max-width: 600px; width: 90%; max-height: calc(100vh - 48px); max-height: calc(100dvh - 48px); overflow-y: auto; }
+    @media (max-width: 768px) { 
+      .admin-layout { grid-template-columns: 1fr; padding: 24px 16px; } 
+      .admin-sidebar { 
+        display: flex; 
+        flex-direction: row; 
+        overflow-x: auto; 
+        padding: 8px 0 12px; 
+        position: sticky; 
+        top: 0; 
+        background: var(--bg); 
+        z-index: 10; 
+        gap: 8px; 
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -16px;
+        padding-left: 16px;
+        padding-right: 16px;
+      } 
+      .admin-nav-item { 
+        flex: 0 0 auto; 
+        white-space: nowrap; 
+        text-align: center;
+        min-height: 44px;
+        padding: 10px 16px;
+      } 
+      .admin-product-card { grid-template-columns: 1fr; } 
+      .admin-product-image { width: 100%; height: 200px; } 
+      .admin-product-actions { width: 100%; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; margin-top: 8px; } 
+      .admin-product-price { text-align: left; font-size: 1.1rem; } 
+      .admin-form { max-width: 100%; } 
+      .admin-panel-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .admin-panel-head .button { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .admin-layout { padding: 16px 12px; }
+      .admin-sidebar { margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
+      .admin-product-image { height: 180px; }
+      .admin-modal { 
+        width: calc(100% - 24px); 
+        max-height: calc(100vh - 32px);
+        max-height: calc(100dvh - 32px);
+        padding: 20px;
+        border-radius: 18px;
+      }
+      .admin-modal .drawer-head { margin-bottom: 16px; }
+      .admin-modal .drawer-head h2 { font-size: 1.3rem; }
+      .admin-form .form-group { gap: 6px; }
+      .admin-form .form-group label { font-size: 0.78rem; }
+      .admin-form .form-group input,
+      .admin-form .form-group select,
+      .admin-form .form-group textarea { 
+        padding: 14px; 
+        font-size: 16px; /* Prevent iOS zoom */
+        min-height: 48px;
+      }
+    }
   </style>
 </head>
 <body data-page="admin">
