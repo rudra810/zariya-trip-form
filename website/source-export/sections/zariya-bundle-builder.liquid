@@ -1,0 +1,170 @@
+{% liquid
+  assign c = collections[section.settings.collection]
+%}
+
+<section class="z-bundle" data-z-bundle data-original-each="{{ section.settings.original_each }}" data-bundle-price="{{ section.settings.bundle_price }}">
+  <div class="page-width">
+    <div class="z-bundle__banner" role="note" aria-label="Offer">
+      <span class="z-bundle__flag">🇮🇳</span>
+      <div class="z-bundle__bannerText">
+        <div class="z-bundle__title">Republic Day Offer</div>
+        <div class="z-bundle__subtitle">Pick any 2 hoodies for <strong>₹{{ section.settings.bundle_price }}</strong></div>
+      </div>
+    </div>
+
+    <div class="z-bundle__shell">
+      <header class="z-bundle__top">
+        <h2 class="z-bundle__heading">Build your bundle</h2>
+        <p class="z-bundle__desc">Select hoodies + sizes. Add both to cart in one tap.</p>
+      </header>
+
+      <div class="z-bundle__content">
+        {% assign products_json = '' %}
+        {% capture products_json %}
+          [
+          {%- if c != blank -%}
+            {%- paginate c.products by 250 -%}
+              {%- for p in c.products -%}
+                {%- assign tags_down = p.tags | join: ',' | downcase -%}
+                {%- assign type_down = p.product_type | downcase -%}
+                {%- unless tags_down contains 'hoodie' or type_down contains 'hoodie' -%}{%- continue -%}{%- endunless -%}
+                {
+                  "id": {{ p.id }},
+                  "handle": {{ p.handle | json }},
+                  "title": {{ p.title | json }},
+                  "img": {{ p.featured_image | image_url: width: 480 | json }},
+                  "variants": [
+                    {%- for v in p.variants -%}
+                      {"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available | json }}}
+                      {%- unless forloop.last -%},{%- endunless -%}
+                    {%- endfor -%}
+                  ]
+                }
+                {%- unless forloop.last -%},{%- endunless -%}
+              {%- endfor -%}
+            {%- endpaginate -%}
+          {%- endif -%}
+          ]
+        {% endcapture %}
+
+        <div class="z-bundle__pick" data-z-pick="x">
+          <div class="z-bundle__pickHead">
+            <div class="z-bundle__pickTitle">Hoodie 1</div>
+            <div class="z-bundle__pickNote">Choose design + size</div>
+          </div>
+
+          <div class="z-bundle__pickBody">
+            <div class="z-bundle__preview" aria-hidden="true">
+              <div class="z-bundle__previewPlaceholder" data-z-placeholder>select your hoodie</div>
+              <img data-z-preview alt="" loading="lazy" style="display:none;">
+              <div class="z-bundle__previewGlow"></div>
+            </div>
+
+            <div class="z-bundle__controls">
+              <label class="z-bundle__label" for="zBundleX">Design</label>
+              <select id="zBundleX" class="z-bundle__select" data-z-product="x" aria-label="Select hoodie 1">
+                <option value="">Select hoodie</option>
+                {%- if c != blank -%}
+                  {%- paginate c.products by 250 -%}
+                    {%- for p in c.products -%}
+                      {%- assign tags_down = p.tags | join: ',' | downcase -%}
+                      {%- assign type_down = p.product_type | downcase -%}
+                      {%- unless tags_down contains 'hoodie' or type_down contains 'hoodie' -%}{%- continue -%}{%- endunless -%}
+                      <option
+                        value="{{ p.handle }}"
+                        data-img="{{ p.featured_image | image_url: width: 480 }}"
+                        data-variants='[
+                          {%- for v in p.variants -%}
+                            {"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}
+                          {%- endfor -%}
+                        ]'
+                      >
+                        {{ p.title }}
+                      </option>
+                    {%- endfor -%}
+                  {%- endpaginate -%}
+                {%- endif -%}
+              </select>
+
+              <label class="z-bundle__label" for="zBundleXSize">Size</label>
+              <select id="zBundleXSize" class="z-bundle__select" data-z-size="x" disabled aria-label="Select size 1">
+                <option value="">Select size</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="z-bundle__pick" data-z-pick="y">
+          <div class="z-bundle__pickHead">
+            <div class="z-bundle__pickTitle">Hoodie 2</div>
+            <div class="z-bundle__pickNote">Choose design + size</div>
+          </div>
+
+          <div class="z-bundle__pickBody">
+            <div class="z-bundle__preview" aria-hidden="true">
+              <div class="z-bundle__previewPlaceholder" data-z-placeholder>select your hoodie</div>
+              <img data-z-preview alt="" loading="lazy" style="display:none;">
+              <div class="z-bundle__previewGlow"></div>
+            </div>
+
+            <div class="z-bundle__controls">
+              <label class="z-bundle__label" for="zBundleY">Design</label>
+              <select id="zBundleY" class="z-bundle__select" data-z-product="y" aria-label="Select hoodie 2">
+                <option value="">Select hoodie</option>
+                {%- if c != blank -%}
+                  {%- paginate c.products by 250 -%}
+                    {%- for p in c.products -%}
+                      {%- assign tags_down = p.tags | join: ',' | downcase -%}
+                      {%- assign type_down = p.product_type | downcase -%}
+                      {%- unless tags_down contains 'hoodie' or type_down contains 'hoodie' -%}{%- continue -%}{%- endunless -%}
+                      <option
+                        value="{{ p.handle }}"
+                        data-img="{{ p.featured_image | image_url: width: 480 }}"
+                        data-variants='[
+                          {%- for v in p.variants -%}
+                            {"id":{{ v.id }},"title":{{ v.title | json }},"available":{{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}
+                          {%- endfor -%}
+                        ]'
+                      >
+                        {{ p.title }}
+                      </option>
+                    {%- endfor -%}
+                  {%- endpaginate -%}
+                {%- endif -%}
+              </select>
+
+              <label class="z-bundle__label" for="zBundleYSize">Size</label>
+              <select id="zBundleYSize" class="z-bundle__select" data-z-size="y" disabled aria-label="Select size 2">
+                <option value="">Select size</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="z-bundle__bar" data-z-bar>
+        <div class="z-bundle__pricing">
+          <div class="z-bundle__strike" data-z-strike></div>
+          <div class="z-bundle__now" data-z-now></div>
+          <div class="z-bundle__save" data-z-save></div>
+        </div>
+
+        <button class="button z-bundle__btn" type="button" data-z-add>Add Bundle to Cart</button>
+
+        <p class="z-bundle__helper" data-z-msg aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Zariya Bundle Builder",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Bundle source collection" },
+    { "type": "number", "id": "original_each", "label": "Original price each (₹)", "default": 1819 },
+    { "type": "number", "id": "bundle_price", "label": "Bundle price (₹)", "default": 2799 }
+  ],
+  "presets": [{ "name": "Zariya Bundle Builder" }]
+}
+{% endschema %}

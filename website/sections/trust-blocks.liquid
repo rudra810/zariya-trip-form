@@ -1,0 +1,46 @@
+<section class="trust-blocks">
+  <div class="container trust-grid">
+    <article>
+      <p class="eyebrow">QUALITY ASSURANCE</p>
+      <h2>{{ section.settings.why_heading }}</h2>
+      <p>{{ section.settings.why_copy }}</p>
+    </article>
+
+    <article>
+      <p class="eyebrow">OUR PROMISE</p>
+      <h2>{{ section.settings.promise_heading }}</h2>
+      <p>{{ section.settings.promise_copy }}</p>
+    </article>
+
+    <article>
+      <p class="eyebrow">BRAND CREDIBILITY</p>
+      <h2>{{ section.settings.credibility_heading }}</h2>
+      <p>{{ section.settings.credibility_copy }}</p>
+    </article>
+
+    <article>
+      <p class="eyebrow">SAFE CHECKOUT</p>
+      <h2>{{ section.settings.checkout_heading }}</h2>
+      <p>{{ section.settings.checkout_copy }}</p>
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust blocks",
+  "settings": [
+    {"type": "text", "id": "why_heading", "label": "Why heading", "default": "Why Zariya"},
+    {"type": "textarea", "id": "why_copy", "label": "Why copy"},
+    {"type": "text", "id": "promise_heading", "label": "Promise heading", "default": "Our Promise of Excellence"},
+    {"type": "textarea", "id": "promise_copy", "label": "Promise copy"},
+    {"type": "text", "id": "credibility_heading", "label": "Credibility heading", "default": "Built on Trust. Defined by Craft."},
+    {"type": "textarea", "id": "credibility_copy", "label": "Credibility copy"},
+    {"type": "text", "id": "checkout_heading", "label": "Checkout heading", "default": "Shop with Confidence"},
+    {"type": "textarea", "id": "checkout_copy", "label": "Checkout copy"}
+  ],
+  "presets": [
+    {"name": "Trust blocks"}
+  ]
+}
+{% endschema %}

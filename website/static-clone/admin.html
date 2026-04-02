@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zariya | Admin Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin-header { background: linear-gradient(135deg, #d4b06a, #a27b35); color: #120d03; padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .admin-header h1 { margin: 0; font-size: 1.8rem; }
+    .admin-layout { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 40px 20px; }
+    .admin-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; height: fit-content; }
+    .admin-nav-item { padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); color: var(--muted); cursor: pointer; transition: all 0.2s ease; text-align: left; font-weight: 500; }
+    .admin-nav-item:hover { border-color: rgba(212,176,106,0.3); color: var(--text); }
+    .admin-nav-item.active { background: rgba(212,176,106,0.1); border-color: rgba(212,176,106,0.3); color: var(--gold); }
+    .admin-panel { display: none; }
+    .admin-panel.active { display: block; animation: slideInDown 0.3s ease; }
+    .admin-panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .admin-panel-head h2 { margin: 0; font-size: 1.5rem; }
+    .admin-form { display: grid; gap: 16px; max-width: 500px; }
+    .form-group { display: grid; gap: 8px; }
+    .form-group label { color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+    .form-group input, .form-group select, .form-group textarea { padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.02); color: var(--text); font: inherit; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: rgba(212,176,106,0.5); background: rgba(255,255,255,0.05); }
+    .admin-products-list { display: grid; gap: 12px; }
+    .admin-product-card { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: rgba(255,255,255,0.02); align-items: center; transition: all 0.2s ease; }
+    .admin-product-card:hover { border-color: rgba(212,176,106,0.3); background: rgba(255,255,255,0.04); }
+    .admin-product-image { width: 100px; height: 100px; border-radius: 12px; background: rgba(255,255,255,0.05); overflow: hidden; object-fit: cover; }
+    .admin-product-info h4 { margin: 0 0 4px; font-size: 1rem; }
+    .admin-product-info p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+    .admin-product-price { text-align: right; font-weight: 600; color: var(--gold); }
+    .admin-product-actions { display: grid; justify-items: end; gap: 10px; }
+    .admin-edit-button { min-height: 38px; padding: 0 14px; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .admin-hint { margin: -10px 0 18px; color: var(--muted); font-size: 0.9rem; }
+    .admin-modal { max-width: 600px; width: 90%; }
+    @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } .admin-sidebar { grid-template-columns: repeat(2, 1fr); display: grid; position: static; } .admin-product-card { grid-template-columns: 1fr; } .admin-product-image { width: 100%; height: 180px; } .admin-product-actions { justify-items: start; } .admin-product-price { text-align: left; } }
+  </style>
+</head>
+<body data-page="admin">
+  <div class="admin-header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+      <div>
+        <h1 style="margin: 0; color: #120d03;">Zariya Admin Panel</h1>
+        <p style="margin: 4px 0 0; opacity: 0.85; color: #120d03; font-size: 0.9rem;">Real-time website management</p>
+      </div>
+      <a href="index.html" style="color: #120d03; text-decoration: none; font-weight: 600; padding: 10px 16px; background: rgba(0,0,0,0.1); border-radius: 999px;">← Back</a>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <nav class="admin-sidebar">
+      <button class="admin-nav-item active" data-admin-tab="products">📦 Products</button>
+      <button class="admin-nav-item" data-admin-tab="hero">🎨 Hero</button>
+      <button class="admin-nav-item" data-admin-tab="settings">⚙️ Settings</button>
+    </nav>
+
+    <div class="admin-content">
+      <!-- Products -->
+      <div class="admin-panel active" data-admin-section="products">
+        <div class="admin-panel-head">
+          <h2>Products</h2>
+          <button type="button" class="button button-solid" id="add-product-btn">+ Add Product</button>
+        </div>
+        <p class="admin-hint">Use Edit Product on any card to quickly update pricing, image, and copy.</p>
+        <div id="products-list" class="admin-products-list"></div>
+      </div>
+
+      <!-- Hero -->
+      <div class="admin-panel" data-admin-section="hero">
+        <div class="admin-panel-head">
+          <h2>Hero Section</h2>
+        </div>
+        <div class="admin-form">
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="hero-title" placeholder="Enter hero title">
+          </div>
+          <div class="form-group">
+            <label>Subtitle</label>
+            <textarea id="hero-subtitle" rows="3" placeholder="Enter hero subtitle"></textarea>
+          </div>
+          <button type="button" class="button button-solid" onclick="saveHeroSettings()">Save</button>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="admin-panel" data-admin-section="settings">
+        <div class="admin-panel-head">
+          <h2>Settings</h2>
+        </div>
+        <div class="admin-form">
+          <div class="form-group">
+            <label>Site Name</label>
+            <input type="text" id="site-name" placeholder="ZARIYA">
+          </div>
+          <div class="form-group">
+            <label>Site Email</label>
+            <input type="email" id="site-email" placeholder="hello@zariya.com">
+          </div>
+          <button type="button" class="button button-solid" onclick="saveSettings()">Save Settings</button>
+          <button type="button" class="button button-ghost" onclick="resetAllData()" style="margin-top: 12px;">Reset to Default</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Modal -->
+  <div class="modal-overlay" id="product-modal" hidden>
+    <div class="modal-card admin-modal">
+      <div class="drawer-head">
+        <h2 id="modal-title">Add Product</h2>
+        <button type="button" class="button button-ghost" onclick="closeProductModal()">Close</button>
+      </div>
+      <form id="product-form" onsubmit="saveProduct(event)" class="admin-form">
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" id="product-title" required>
+        </div>
+        <div class="form-group">
+          <label>Type *</label>
+          <select id="product-type" required>
+            <option value="">Select type</option>
+            <option value="tshirt">T-Shirt</option>
+            <option value="hoodie">Hoodie</option>
+            <option value="crewneck">Crewneck</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Price (Rs.) *</label>
+          <input type="number" id="product-price" required>
+        </div>
+        <div class="form-group">
+          <label>Compare At Price (Rs.)</label>
+          <input type="number" id="product-compare">
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="text" id="product-image" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="product-description" rows="3"></textarea>
+        </div>
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button type="submit" class="button button-solid">Save</button>
+          <button type="button" class="button button-ghost" onclick="closeProductModal()">Cancel</button>
+          <button type="button" id="delete-btn" class="button button-ghost" onclick="deleteProduct()" style="margin-left: auto; display: none; color: #ff6b6b;">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="data.js?v=2"></script>
+  <script>
+    let currentEditingIndex = null;
+    const STORAGE_KEY = 'zariya.admin.products.v1';
+
+    function getProducts() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      return stored ? JSON.parse(stored) : (window.PRODUCTS || []);
+    }
+
+    function saveProducts(products) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+      // Broadcast to other windows
+      window.dispatchEvent(new CustomEvent('zariya-products-updated', { detail: products }));
+      renderProductsList();
+    }
+
+    function renderProductsList() {
+      const products = getProducts();
+      const container = document.getElementById('products-list');
+      container.innerHTML = products.map((p, i) => `
+        <article class="admin-product-card">
+          <img src="${p.image || 'https://via.placeholder.com/100'}" alt="${p.title}" class="admin-product-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23333%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENo Image%3C/text%3E%3C/svg%3E'">
+          <div class="admin-product-info">
+            <h4>${p.title}</h4>
+            <p>${p.type ? p.type.charAt(0).toUpperCase() + p.type.slice(1) : 'Product'}</p>
+          </div>
+          <div class="admin-product-actions">
+            <div class="admin-product-price">Rs. ${Number(p.price || 0).toLocaleString()}</div>
+            <button type="button" class="button button-solid admin-edit-button" onclick="editProduct(${i})" aria-label="Edit product">Edit Product</button>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function editProduct(index) {
+      const products = getProducts();
+      const p = products[index];
+      currentEditingIndex = index;
+
+      document.getElementById('modal-title').textContent = 'Edit Product';
+      document.getElementById('product-title').value = p.title;
+      document.getElementById('product-type').value = p.type;
+      document.getElementById('product-price').value = p.price;
+      document.getElementById('product-compare').value = p.compareAt || '';
+      document.getElementById('product-image').value = p.image || '';
+      document.getElementById('product-description').value = p.description || '';
+      document.getElementById('delete-btn').style.display = 'block';
+      document.getElementById('product-modal').hidden = false;
+    }
+
+    document.getElementById('add-product-btn').addEventListener('click', () => {
+      currentEditingIndex = null;
+      document.getElementById('modal-title').textContent = 'Add New Product';
+      document.getElementById('product-form').reset();
+      document.getElementById('delete-btn').style.display = 'none';
+      document.getElementById('product-modal').hidden = false;
+    });
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const products = getProducts();
+      const product = {
+        handle: document.getElementById('product-title').value.toLowerCase().replace(/\s+/g, '-'),
+        title: document.getElementById('product-title').value,
+        vendor: 'ZARIYA',
+        type: document.getElementById('product-type').value,
+        price: parseInt(document.getElementById('product-price').value),
+        compareAt: parseInt(document.getElementById('product-compare').value) || 0,
+        image: document.getElementById('product-image').value,
+        description: document.getElementById('product-description').value || ''
+      };
+
+      if (currentEditingIndex !== null) {
+        products[currentEditingIndex] = product;
+      } else {
+        products.push(product);
+      }
+
+      saveProducts(products);
+      closeProductModal();
+      showToast('✓ Product saved!');
+    }
+
+    function deleteProduct() {
+      if (currentEditingIndex !== null && confirm('Delete this product?')) {
+        const products = getProducts();
+        products.splice(currentEditingIndex, 1);
+        saveProducts(products);
+        closeProductModal();
+        showToast('✓ Product deleted!');
+      }
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').hidden = true;
+      currentEditingIndex = null;
+    }
+
+    function saveHeroSettings() {
+      const title = document.getElementById('hero-title').value;
+      const subtitle = document.getElementById('hero-subtitle').value;
+      localStorage.setItem('zariya.admin.hero', JSON.stringify({ title, subtitle }));
+      window.dispatchEvent(new CustomEvent('zariya-hero-updated'));
+      showToast('✓ Hero section updated!');
+    }
+
+    function saveSettings() {
+      const name = document.getElementById('site-name').value;
+      const email = document.getElementById('site-email').value;
+      localStorage.setItem('zariya.admin.settings', JSON.stringify({ name, email }));
+      showToast('✓ Settings saved!');
+    }
+
+    function resetAllData() {
+      if (confirm('Reset all changes to default?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem('zariya.admin.hero');
+        localStorage.removeItem('zariya.admin.settings');
+        location.reload();
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'toast is-visible';
+      toast.textContent = message;
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: rgba(212, 176, 106, 0.15);
+        border: 1px solid rgba(212, 176, 106, 0.4);
+        color: var(--gold);
+        padding: 12px 18px;
+        border-radius: 999px;
+        z-index: 100;
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
+
+    // Tab switching
+    document.querySelectorAll('.admin-nav-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.adminTab;
+        document.querySelectorAll('.admin-nav-item').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`[data-admin-section="${tab}"]`).classList.add('active');
+      });
+    });
+
+    // Close modal on overlay click
+    document.getElementById('product-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'product-modal') closeProductModal();
+    });
+
+    // Initialize
+    function init() {
+      renderProductsList();
+      const hero = JSON.parse(localStorage.getItem('zariya.admin.hero') || '{}');
+      document.getElementById('hero-title').value = hero.title || 'Street. Intentional. Unapologetic.';
+      document.getElementById('hero-subtitle').value = hero.subtitle || '';
+      const settings = JSON.parse(localStorage.getItem('zariya.admin.settings') || '{}');
+      document.getElementById('site-name').value = settings.name || 'ZARIYA';
+      document.getElementById('site-email').value = settings.email || 'hello@zariya.com';
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

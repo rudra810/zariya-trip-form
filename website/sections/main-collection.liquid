@@ -1,0 +1,42 @@
+<section class="collection-page">
+  <div class="container">
+    <header class="collection-header">
+      <h1>{{ collection.title }}</h1>
+      {% if section.settings.show_count %}
+        <p>{{ collection.products_count }} products</p>
+      {% endif %}
+
+      {% if section.settings.show_sort %}
+        <form method="get" class="collection-sort">
+          <label for="SortBy">Sort</label>
+          <select name="sort_by" id="SortBy" onchange="this.form.submit()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      {% endif %}
+    </header>
+
+    <div class="product-grid">
+      {% paginate collection.products by section.settings.products_per_page %}
+        {% for product in collection.products %}
+          {% render 'card-product', product: product %}
+        {% endfor %}
+        {{ paginate | default_pagination }}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [
+    {"type": "checkbox", "id": "show_image", "label": "Show image", "default": true},
+    {"type": "checkbox", "id": "show_count", "label": "Show count", "default": true},
+    {"type": "checkbox", "id": "show_sort", "label": "Show sort", "default": true},
+    {"type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 24, "step": 4, "default": 16}
+  ]
+}
+{% endschema %}

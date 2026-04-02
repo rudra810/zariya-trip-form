@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <style>
+      .logo-path { fill: #3a3a3a; }
+    </style>
+  </defs>
+  <!-- Z letter -->
+  <path class="logo-path" d="M30 55 L100 55 L38 135 L105 135" stroke="#3a3a3a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Y letter with elegant curve -->
+  <path class="logo-path" d="M90 55 C90 55 120 55 130 55 C140 55 155 60 155 80 C155 100 140 110 125 115 L115 120 C105 125 100 135 100 150 C100 158 105 165 115 165 C125 165 130 158 130 150" stroke="#3a3a3a" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Decorative serif on Z -->
+  <path class="logo-path" d="M30 55 C30 50 35 45 42 45 L55 45" stroke="#3a3a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <!-- Decorative curl on Z bottom -->
+  <path class="logo-path" d="M38 135 C38 140 33 148 28 155 C23 162 25 168 32 168 C38 168 42 163 42 155" stroke="#3a3a3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Y top serif -->  
+  <path class="logo-path" d="M155 55 C162 52 168 50 170 55" stroke="#3a3a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

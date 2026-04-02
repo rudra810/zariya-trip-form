@@ -1,0 +1,348 @@
+/* ==========================================================
+   ZARIYA — CART (ULTRA PREMIUM)
+   Scope: Cart page only
+   Paste into: assets/component-cart.css (BOTTOM)
+   Goals:
+   ✅ Apple-like premium glass
+   ✅ 3D depth (subtle)
+   ✅ Smooth transitions + hover
+   ✅ Fix rectangle border around Checkout
+   ✅ Does NOT touch product images
+========================================================== */
+
+/* -------------------------
+   Base / Shell
+-------------------------- */
+
+.cart{
+  position:relative;
+  display:block;
+  isolation:isolate;
+  background: transparent;
+}
+
+/* soft ambient lighting behind cart */
+.cart::before{
+  content:"";
+  position:absolute;
+  inset:-220px -120px;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 600px at 12% 18%, rgba(255,255,255,.10), rgba(255,255,255,0) 60%),
+    radial-gradient(900px 520px at 92% 28%, rgba(255,255,255,.07), rgba(255,255,255,0) 62%),
+    radial-gradient(1200px 780px at 50% 120%, rgba(0,0,0,.65), rgba(0,0,0,0) 70%);
+  opacity:1;
+}
+
+/* nicer page spacing */
+.cart__contents > * + *{ margin-top: 2rem; }
+
+/* -------------------------
+   Empty state
+-------------------------- */
+
+.cart__warnings{
+  display:none;
+  text-align:center;
+  padding: 3.5rem 0 1.5rem;
+}
+.is-empty .cart__warnings,
+.is-empty .cart__empty-text{ display:block; }
+
+.cart__empty-text{
+  margin: 3.8rem 0 1.6rem;
+  letter-spacing: -.02em;
+}
+
+/* -------------------------
+   Items wrapper
+-------------------------- */
+
+.cart__items{
+  position:relative;
+  padding-bottom: 2.6rem;
+  border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+}
+
+/* add premium container feel */
+.cart__items,
+.cart__footer{
+  border-radius: 26px;
+}
+
+/* -------------------------
+   Footer / Totals panel
+-------------------------- */
+
+.cart__footer{
+  border: 0;
+}
+
+.cart__footer > * + *{ margin-top: 3.2rem; }
+
+@media screen and (min-width: 750px){
+  .cart__footer{
+    display:flex;
+    justify-content:space-between;
+    gap: 2rem;
+  }
+  .cart__footer > *{
+    width: min(36rem, 100%);
+  }
+  .cart__footer > * + *{
+    margin-left:0;
+    margin-top:0;
+  }
+}
+
+/* blocks spacing */
+.cart__blocks > * + *{ margin-top: 1rem; }
+
+/* -------------------------
+   Note field
+-------------------------- */
+
+.cart__note{
+  height: fit-content;
+  top: 2.5rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow:
+    0 14px 55px rgba(0,0,0,.28);
+  backdrop-filter: blur(10px);
+}
+
+.cart__note label{
+  position:static;
+  margin-bottom: 10px;
+  color: rgba(var(--color-foreground), 0.70);
+}
+
+.cart__note .field__input{
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+/* -------------------------
+   Tax note
+-------------------------- */
+
+.tax-note{
+  margin: 1.4rem 0 1.1rem auto;
+  text-align:center;
+  display:block;
+  opacity:.86;
+}
+
+@media screen and (min-width: 750px){
+  .tax-note{ text-align:right; margin-bottom: 2rem; }
+}
+
+/* -------------------------
+   CTAs / Checkout area
+-------------------------- */
+
+.cart__ctas{
+  text-align:center;
+  display:grid;
+  gap: 12px;
+}
+
+@media screen and (min-width: 750px){
+  .cart__ctas{
+    display:flex;
+    gap: 12px;
+    justify-content:flex-end;
+    align-items:center;
+  }
+}
+
+.cart__ctas button{ width:100%; }
+
+@media screen and (min-width: 750px){
+  .cart__ctas button{ width:auto; }
+}
+
+.cart__checkout-button{
+  max-width: 38rem;
+  border-radius: 999px !important;
+}
+
+/* -------------------------
+   ✅ FIX: Rectangle border around Checkout
+   (Dawn often wraps with fieldset + container)
+-------------------------- */
+
+.cart__ctas,
+.cart__footer,
+.cart__blocks,
+.cart__dynamic-checkout-buttons,
+.cart__dynamic-checkout-buttons *{
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.cart__ctas fieldset,
+.cart__dynamic-checkout-buttons fieldset,
+.cart__dynamic-checkout-buttons [data-shopify-buttoncontainer],
+.cart__dynamic-checkout-buttons .shopify-cleanslate,
+.cart__dynamic-checkout-buttons iframe{
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* -------------------------
+   Premium button system
+-------------------------- */
+
+.cart__ctas .button,
+.cart__ctas .cart__checkout-button{
+  position:relative;
+  overflow:hidden;
+  border-radius:999px !important;
+  transform: translateZ(0);
+  will-change: transform, box-shadow, filter;
+  transition:
+    transform 280ms cubic-bezier(.16,1,.3,1),
+    box-shadow 520ms cubic-bezier(.16,1,.3,1),
+    filter 280ms cubic-bezier(.16,1,.3,1);
+}
+
+/* make checkout visually premium */
+.cart__checkout-button{
+  background: #0f0f0f !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.10) !important;
+  box-shadow:
+    0 14px 40px rgba(0,0,0,.34),
+    0 40px 150px rgba(0,0,0,.45);
+}
+
+.cart__checkout-button::after{
+  content:"";
+  position:absolute;
+  inset:-70%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255,255,255,.42), rgba(255,255,255,0) 46%);
+  opacity:.22;
+  pointer-events:none;
+  transform: translateZ(0);
+}
+
+@media (hover:hover) and (pointer:fine){
+  .cart__checkout-button:hover{
+    transform: translateY(-3px) scale(1.01);
+    filter: saturate(1.06) contrast(1.02);
+    box-shadow:
+      0 18px 50px rgba(0,0,0,.42),
+      0 70px 220px rgba(0,0,0,.55);
+  }
+}
+
+.cart__checkout-button:active{
+  transform: scale(.988);
+}
+
+/* secondary buttons */
+.cart__ctas .button:not(.cart__checkout-button){
+  background: rgba(255,255,255,.06) !important;
+  color: rgba(255,255,255,.92) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  box-shadow: 0 12px 44px rgba(0,0,0,.28);
+  backdrop-filter: blur(10px);
+}
+
+@media (hover:hover) and (pointer:fine){
+  .cart__ctas .button:not(.cart__checkout-button):hover{
+    transform: translateY(-2px);
+    box-shadow: 0 24px 80px rgba(0,0,0,.40);
+  }
+}
+
+/* dynamic checkout buttons max width */
+.cart__dynamic-checkout-buttons{
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
+.cart__dynamic-checkout-buttons:has(.dynamic-checkout__content:empty){
+  margin: 0;
+}
+
+/* -------------------------
+   Micro polish
+-------------------------- */
+
+.cart__login-title{ margin: 4.8rem 0 0.5rem; }
+.cart__login-paragraph{ margin-top: .8rem; }
+.cart__login-paragraph a{ font-size: inherit; }
+
+@media screen and (min-width: 990px){
+  .cart__warnings{ padding: 7rem 0 1rem; }
+  .cart__empty-text{ margin: 0 0 3rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .cart__ctas .button,
+  .cart__ctas .cart__checkout-button{
+    transition:none !important;
+  }
+}
+
+/* ===================================================================
+   ZARIYA — CART FOOTER RIGHT ALIGN (SAFE PATCH)
+   Goal: Move the whole "Estimated total + note + checkout" block to extreme right
+   Paste at bottom of: assets/component-cart.css (or base.css)
+=================================================================== */
+
+.cart__footer{
+  justify-content: flex-end !important;
+}
+
+.cart__footer > div:only-child{
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.cart__ctas{
+  text-align: right !important;
+  margin-left: auto !important;
+}
+
+.tax-note{
+  text-align: right !important;
+  margin-left: auto !important;
+}
+
+.cart__dynamic-checkout-buttons{
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  max-width: 36rem;
+}
+
+/* Keep checkout button aligned to right */
+.cart__checkout-button{
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  display: block;
+}
+
+/* If the theme adds grid constraints, force right column behavior */
+@media screen and (min-width: 750px){
+  .cart__items + .cart__footer{
+    grid-column: 2 !important;
+    justify-self: end !important;
+  }
+
+  .cart__footer > *{
+    margin-left: auto !important;
+  }
+}

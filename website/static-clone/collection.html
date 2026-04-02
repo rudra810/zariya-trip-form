@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zariya | Collection</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="collection">
+  <header class="site-header">
+    <div class="announcement-bar">
+      <div class="marquee-track">
+        <span>LIMITED DROP</span><span>CRAFTED IN INDIA</span><span>24-48 HOUR DISPATCH</span><span>SECURE SUPPORT</span><span>LIMITED DROP</span><span>CRAFTED IN INDIA</span><span>24-48 HOUR DISPATCH</span><span>SECURE SUPPORT</span>
+      </div>
+    </div>
+    <div class="container header-row">
+      <button class="menu-toggle" type="button" data-action="menu">Menu</button>
+      <a class="logo" href="index.html" aria-label="Zariya home">
+        <span class="logo-mark" aria-hidden="true"><img class="logo-monogram" src="images/logo.jpeg" alt=""></span>
+        <span class="logo-word">
+          <span class="logo-title">ZARIYA</span>
+          <span class="logo-subtitle">crafted street luxury</span>
+        </span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="collection.html">Collection</a>
+        <a href="index.html#lookbook">Lookbook</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" data-action="search">Search</button>
+        <button type="button" data-action="account">Account</button>
+        <button type="button" data-action="cart">Cart <span class="cart-count" data-cart-count>0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section collection-hero">
+      <div class="container collection-hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Full catalog</p>
+          <h1>Seasonless essentials, built like a drop.</h1>
+          <p class="hero-text">Explore our complete range of premium streetwear — from heavyweight tees to statement hoodies, every piece is crafted with intention.</p>
+        </div>
+        <article class="panel reveal collection-hero-panel">
+          <p class="eyebrow">Catalog snapshot</p>
+          <p>Each piece is designed as a limited edition, built with premium materials and available while stocks last.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container collection-toolbar">
+        <label class="field search-field">
+          <span class="eyebrow">Search</span>
+          <input type="search" placeholder="Search products, categories, or handles" data-collection-search>
+        </label>
+        <label class="field sort-field">
+          <span class="eyebrow">Sort by</span>
+          <select id="sort-select">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="title">Alphabetical</option>
+          </select>
+        </label>
+        <button class="button button-ghost" type="button" data-action="reset-filters">Reset filters</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container collection-layout">
+        <aside class="filter-panel panel reveal">
+          <p class="eyebrow">Filter</p>
+          <div class="filter-stack">
+            <button class="chip is-active" type="button" data-filter-type="all">All</button>
+            <button class="chip" type="button" data-filter-type="tshirt">T-Shirts <span data-filter-count="tshirt"></span></button>
+            <button class="chip" type="button" data-filter-type="hoodie">Hoodies <span data-filter-count="hoodie"></span></button>
+            <button class="chip" type="button" data-filter-type="crewneck">Crewnecks <span data-filter-count="crewneck"></span></button>
+          </div>
+
+        </aside>
+        <section>
+          <div class="results-bar">
+            <p class="eyebrow" data-collection-summary>Loading pieces...</p>
+            <a class="text-link" href="contact.html#support">Need help choosing?</a>
+          </div>
+          <div id="collection-grid" class="product-grid"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p class="eyebrow">Zariya</p>
+        <p class="footer-copy">Luxury streetwear with an editorial edge. Crafted in India, designed for the world.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Explore</p>
+        <div class="footer-links">
+          <a href="index.html#lookbook">Lookbook</a>
+          <a href="contact.html#faq">FAQ</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <div class="footer-links">
+          <a href="mailto:zariya.wyw@gmail.com">zariya.wyw@gmail.com</a>
+          <a href="https://wa.me/916399008999" target="_blank" rel="noreferrer">WhatsApp</a>
+          <a href="https://www.instagram.com/zariya.wear/" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="data.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+</body>
+</html>

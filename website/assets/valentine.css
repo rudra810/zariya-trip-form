@@ -1,0 +1,197 @@
+/* ==============================================================
+ZARIYA — VALENTINE PAGE FINAL CSS (STABLE BUILD)
+This version ONLY fixes layout + image ratio + grid.
+No experimental effects. Pure stable overrides.
+===============================================
+
+TARGETED SECTIONS:
+rich_text_bnEH3b
+multicolumn_9TY74A
+
+Paste entire file into valentine.css
+============================================================= */
+
+/* ==============================================================
+0. HARD RESET BACKGROUNDS (Dawn override)
+============================================================== */
+
+#shopify-section-template--19770776518848__rich_text_bnEH3b,
+#shopify-section-template--19770776518848__multicolumn_9TY74A{
+background:#050505 !important;
+position:relative;
+overflow:hidden;
+}
+
+#shopify-section-template--19770776518848__rich_text_bnEH3b .gradient,
+#shopify-section-template--19770776518848__multicolumn_9TY74A .gradient{
+background:transparent !important;
+}
+
+/* ==============================================================
+
+1. SOFT RED GLOW BACKDROP
+   ============================================================== */
+
+#shopify-section-template--19770776518848__rich_text_bnEH3b::before,
+#shopify-section-template--19770776518848__multicolumn_9TY74A::before{
+content:"";
+position:absolute;
+inset:-250px;
+background:
+radial-gradient(circle at 50% 0%, rgba(255,40,90,.18), transparent 60%),
+radial-gradient(circle at 20% 40%, rgba(255,40,90,.10), transparent 60%),
+radial-gradient(circle at 80% 40%, rgba(255,40,90,.10), transparent 60%),
+radial-gradient(circle at 50% 100%, rgba(255,40,90,.18), transparent 70%);
+z-index:0;
+pointer-events:none;
+}
+
+/* ==============================================================
+2. FLOATING HEARTS (lightweight)
+============================================================== */
+
+#shopify-section-template--19770776518848__rich_text_bnEH3b::after,
+#shopify-section-template--19770776518848__multicolumn_9TY74A::after{
+content:"❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤ ❤";
+position:absolute;
+top:-200px;
+width:200%;
+text-align:center;
+font-size:20px;
+opacity:.05;
+letter-spacing:120px;
+animation:valHearts 40s linear infinite;
+pointer-events:none;
+}
+
+@keyframes valHearts{
+from{ transform:translateY(0); }
+to{ transform:translateY(1400px); }
+}
+
+/* ==============================================================
+3. REMOVE DAWN SLIDER SYSTEM (CAUSE OF STRETCH BUG)
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A slider-component,
+#shopify-section-template--19770776518848__multicolumn_9TY74A .slider,
+#shopify-section-template--19770776518848__multicolumn_9TY74A .slider__slide{
+display:contents !important;
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A ul{
+padding:0 !important;
+}
+
+/* ==============================================================
+4. TRUE GRID LAYOUT (FINAL FIX)
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-list{
+display:grid !important;
+grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+gap:42px !important;
+max-width:1200px;
+margin:0 auto;
+align-items:start !important;
+}
+
+@media(max-width:990px){
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-list{
+grid-template-columns:repeat(2,1fr)!important;
+}}
+
+@media(max-width:640px){
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-list{
+grid-template-columns:repeat(1,1fr)!important;
+}}
+
+/* ==============================================================
+5. REMOVE DAWN EQUAL HEIGHT BEHAVIOUR
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .grid__item,
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-list__item{
+height:auto !important;
+align-self:start !important;
+}
+
+/* ==============================================================
+6. CARD BASE STRUCTURE
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card{
+display:block !important;
+height:auto !important;
+padding:14px;
+background:rgba(0,0,0,.55);
+border-radius:28px;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 30px 70px rgba(0,0,0,.6);
+transition:.4s ease;
+}
+
+/* ==============================================================
+7. PERFECT IMAGE CONTAINER (MAIN FIX)
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__image-wrapper{
+padding:0 !important;
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__image-wrapper .media{
+position:relative !important;
+width:100% !important;
+height:0 !important;
+padding-bottom:125% !important;
+border-radius:22px;
+overflow:hidden;
+background:#0a0a0a;
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__image{
+position:absolute !important;
+inset:0;
+width:100% !important;
+height:100% !important;
+object-fit:contain !important;
+object-position:center !important;
+padding:22px;
+transition:transform .5s ease;
+}
+
+/* ==============================================================
+8. TEXT AREA
+============================================================== */
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__info{
+padding:22px 18px 24px !important;
+text-align:center;
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__info h3{
+font-size:17px;
+letter-spacing:.08em;
+margin-top:6px;
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card__info .rte{
+font-size:14px;
+opacity:.7;
+margin-top:6px;
+}
+
+/* ==============================================================
+9. HOVER (very subtle)
+============================================================== */
+
+@media(hover:hover){
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card:hover{
+transform:translateY(-10px);
+box-shadow:0 50px 100px rgba(0,0,0,.7);
+}
+
+#shopify-section-template--19770776518848__multicolumn_9TY74A .multicolumn-card:hover img{
+transform:scale(1.08);
+}
+}

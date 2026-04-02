@@ -1,0 +1,16 @@
+<div class="sticky-buy-bar" id="stickyBuyBar">
+  <div class="sticky-buy-inner">
+    <div class="sticky-info">
+      <span class="sticky-title">{{ product.title }}</span>
+      <span class="sticky-price">
+        {{ product.selected_or_first_available_variant.price | money }}
+      </span>
+    </div>
+
+    <button
+      class="sticky-btn"
+      onclick="document.querySelector('form[action^=\'/cart/add\']').submit()">
+      Add to Cart
+    </button>
+  </div>
+</div>

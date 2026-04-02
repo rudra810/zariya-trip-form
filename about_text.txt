@@ -1,0 +1,26 @@
+﻿ 
+        
+  .template-404 .title + * {
+    margin-top: 1rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .template-404 .title + * {
+      margin-top: 2rem;
+    }
+  }
+ 
+
+ 
+   
+    404
+   
+   
+    Page not found
+   
+   
+    Continue shopping
+   
+ 
+ 
+     

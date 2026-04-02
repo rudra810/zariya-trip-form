@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zariya | Checkout</title>
+  <meta name="description"
+    content="Complete your Zariya order — secure checkout with shipping details and coupon support.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="checkout">
+  <header class="site-header">
+    <div class="announcement-bar">
+      <div class="marquee-track">
+        <span>LIMITED DROP</span><span>CRAFTED IN INDIA</span><span>24-48 HOUR DISPATCH</span><span>SECURE
+          SUPPORT</span><span>LIMITED DROP</span><span>CRAFTED IN INDIA</span><span>24-48 HOUR
+          DISPATCH</span><span>SECURE SUPPORT</span>
+      </div>
+    </div>
+    <div class="container header-row">
+      <a class="logo" href="index.html" aria-label="Zariya home">
+        <span class="logo-mark" aria-hidden="true"><img class="logo-monogram" src="images/logo.jpeg" alt=""></span>
+        <span class="logo-word">
+          <span class="logo-title">ZARIYA</span>
+          <span class="logo-subtitle">crafted street luxury</span>
+        </span>
+      </a>
+      <nav class="main-nav">
+        <a href="collection.html">Back to shopping</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" data-action="cart">Cart <span class="cart-count" data-cart-count>0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section checkout-hero">
+      <div class="container">
+        <p class="eyebrow">Secure checkout</p>
+        <h1>Complete your purchase</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container checkout-layout">
+        <div class="checkout-form-col">
+          <!-- CONTACT INFORMATION -->
+          <div class="checkout-section">
+            <h3>Contact information</h3>
+            <form data-checkout-form>
+              <label class="field"><span>Email</span><input type="email" name="email" placeholder="your@email.com"
+                  required></label>
+              <label class="field" style="margin-top: 12px;">
+                <span style="display: flex; align-items: center; gap: 8px;">
+                  <input type="checkbox" name="newsletter" style="width: auto;" checked>
+                  Keep me updated on new drops and exclusive offers
+                </span>
+              </label>
+            </form>
+          </div>
+
+          <!-- SHIPPING ADDRESS -->
+          <div class="checkout-section">
+            <h3>Shipping address</h3>
+            <form data-shipping-form>
+              <div class="field-grid">
+                <label class="field"><span>First name</span><input type="text" name="firstName" placeholder="First name"
+                    required></label>
+                <label class="field"><span>Last name</span><input type="text" name="lastName" placeholder="Last name"
+                    required></label>
+              </div>
+              <label class="field"><span>Address</span><input type="text" name="address"
+                  placeholder="House no., street, area" required></label>
+              <label class="field"><span>Apartment, suite, etc. (optional)</span><input type="text" name="apartment"
+                  placeholder="Apartment, suite, etc."></label>
+              <div class="field-grid">
+                <label class="field"><span>City</span><input type="text" name="city" placeholder="City"
+                    required></label>
+                <label class="field"><span>State</span>
+                  <select name="state" required>
+                    <option value="">Select state</option>
+                    <option>Andhra Pradesh</option>
+                    <option>Arunachal Pradesh</option>
+                    <option>Assam</option>
+                    <option>Bihar</option>
+                    <option>Chhattisgarh</option>
+                    <option>Delhi</option>
+                    <option>Goa</option>
+                    <option>Gujarat</option>
+                    <option>Haryana</option>
+                    <option>Himachal Pradesh</option>
+                    <option>Jharkhand</option>
+                    <option>Karnataka</option>
+                    <option>Kerala</option>
+                    <option>Madhya Pradesh</option>
+                    <option>Maharashtra</option>
+                    <option>Manipur</option>
+                    <option>Meghalaya</option>
+                    <option>Mizoram</option>
+                    <option>Nagaland</option>
+                    <option>Odisha</option>
+                    <option>Punjab</option>
+                    <option>Rajasthan</option>
+                    <option>Sikkim</option>
+                    <option>Tamil Nadu</option>
+                    <option>Telangana</option>
+                    <option>Tripura</option>
+                    <option>Uttar Pradesh</option>
+                    <option>Uttarakhand</option>
+                    <option>West Bengal</option>
+                  </select>
+                </label>
+              </div>
+              <div class="field-grid">
+                <label class="field"><span>PIN code</span><input type="text" name="pincode"
+                    placeholder="6-digit PIN code" pattern="[0-9]{6}" maxlength="6" required></label>
+                <label class="field"><span>Phone</span><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX"
+                    required></label>
+              </div>
+            </form>
+          </div>
+
+          <!-- SHIPPING METHOD -->
+          <div class="checkout-section">
+            <h3>Shipping method</h3>
+            <div class="payment-methods">
+              <label class="radio-option">
+                <input type="radio" name="shipping" value="standard" checked>
+                <span style="display: flex; justify-content: space-between; width: 100%;">
+                  <span>Standard shipping (5-7 business days)</span>
+                  <strong>Free</strong>
+                </span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="shipping" value="express">
+                <span style="display: flex; justify-content: space-between; width: 100%;">
+                  <span>Express shipping (2-3 business days)</span>
+                  <strong>Rs. 149</strong>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- PAYMENT METHOD -->
+          <div class="checkout-section">
+            <h3>Payment method</h3>
+            <form class="payment-form" data-payment-form>
+              <div class="payment-methods">
+                <label class="radio-option">
+                  <input type="radio" name="method" value="card" checked>
+                  <span>Credit or debit card</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="method" value="upi">
+                  <span>UPI</span>
+                </label>
+                <label class="radio-option">
+                  <input type="radio" name="method" value="cod">
+                  <span>Cash on delivery</span>
+                </label>
+              </div>
+              <div id="card-fields" class="payment-fields">
+                <label class="field"><span>Card number</span><input type="text" placeholder="1234 5678 9012 3456"
+                    required></label>
+                <div class="field-grid">
+                  <label class="field"><span>Expiry</span><input type="text" placeholder="MM/YY" required></label>
+                  <label class="field"><span>CVV</span><input type="text" placeholder="123" required></label>
+                </div>
+                <label class="field"><span>Name on card</span><input type="text" placeholder="Name as shown on card"
+                    required></label>
+              </div>
+            </form>
+          </div>
+
+          <button class="button button-solid" type="button" data-action="place-order"
+            style="width: 100%; margin-top: 24px; min-height: 52px; font-size: 1rem;">Place order</button>
+        </div>
+
+        <aside class="checkout-summary-col">
+          <div class="panel checkout-summary">
+            <p class="eyebrow">Order summary</p>
+            <div id="checkout-items"></div>
+
+            <!-- COUPON CODE -->
+            <div class="coupon-section" style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line);">
+              <p class="eyebrow" style="margin-bottom: 8px;">Discount code</p>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="coupon-input" placeholder="Enter coupon code"
+                  style="flex: 1; border: 1px solid var(--line-strong); border-radius: var(--radius-md); padding: 10px 14px; font-size: 0.88rem; background: var(--bg); color: var(--text); outline: none; transition: all 0.3s ease;">
+                <button class="button button-ghost" type="button" id="apply-coupon-btn"
+                  style="white-space: nowrap;">Apply</button>
+              </div>
+              <p id="coupon-message" style="font-size: 0.8rem; margin-top: 8px; display: none;"></p>
+            </div>
+
+            <div class="summary-total">
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <strong id="checkout-subtotal">Rs. 0</strong>
+              </div>
+              <div class="summary-row" id="discount-row" style="display: none;">
+                <span style="color: var(--accent);">Discount</span>
+                <strong id="checkout-discount" style="color: var(--accent);">- Rs. 0</strong>
+              </div>
+              <div class="summary-row">
+                <span>Shipping</span>
+                <strong id="checkout-shipping">Free</strong>
+              </div>
+              <div class="summary-row summary-final">
+                <span>Total</span>
+                <strong id="checkout-total">Rs. 0</strong>
+              </div>
+            </div>
+            <div
+              style="margin-top: 16px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--bg-soft);">
+              <p
+                style="margin: 0; font-size: 0.8rem; color: var(--muted); display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 1rem;">🔒</span>
+                Secure checkout — your payment details are encrypted and protected.
+              </p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="eyebrow">Zariya</p>
+        <p class="footer-copy">Luxury streetwear with an editorial edge. Crafted in India, designed for the world.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Support</p>
+        <div class="footer-links">
+          <a href="mailto:zariya.wyw@gmail.com">Email</a>
+          <a href="https://wa.me/916399008999" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Shop</p>
+        <div class="footer-links">
+          <a href="collection.html">Collection</a>
+          <a href="index.html">Home</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js?v=2"></script>
+  <script src="app.js?v=2"></script>
+  <script>
+    // Checkout page logic
+    (function () {
+      const COUPON_CODES = {
+        'ZARIYA10': { type: 'percent', value: 10, label: '10% off' },
+        'ZARIYA20': { type: 'percent', value: 20, label: '20% off' },
+        'FLAT100': { type: 'flat', value: 100, label: 'Rs. 100 off' },
+        'FLAT200': { type: 'flat', value: 200, label: 'Rs. 200 off' },
+        'WELCOME': { type: 'percent', value: 15, label: '15% off' }
+      };
+
+      let appliedCoupon = null;
+      let shippingCost = 0;
+
+      function getCart() {
+        try {
+          return JSON.parse(localStorage.getItem('zariya.cart.v2') || '[]');
+        } catch { return []; }
+      }
+
+      function getProduct(handle) {
+        return (window.PRODUCTS || []).find(p => p.handle === handle) || window.PRODUCTS?.[0];
+      }
+
+      function formatMoney(v) {
+        return 'Rs. ' + Number(v).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+      }
+
+      function renderCheckout() {
+        const cart = getCart();
+        const itemsEl = document.getElementById('checkout-items');
+        const subtotalEl = document.getElementById('checkout-subtotal');
+        const totalEl = document.getElementById('checkout-total');
+        const shippingEl = document.getElementById('checkout-shipping');
+        const discountRow = document.getElementById('discount-row');
+        const discountEl = document.getElementById('checkout-discount');
+
+        if (!itemsEl) return;
+
+        if (!cart.length) {
+          itemsEl.innerHTML = '<p class="muted">Your cart is empty. <a href="collection.html" style="text-decoration: underline;">Browse pieces</a></p>';
+          subtotalEl.textContent = formatMoney(0);
+          totalEl.textContent = formatMoney(0);
+          return;
+        }
+
+        let subtotal = 0;
+        const rows = cart.map(item => {
+          const product = getProduct(item.handle);
+          if (!product) return '';
+          const lineTotal = product.price * item.quantity;
+          subtotal += lineTotal;
+          return `
+            <div class="checkout-item">
+              <div>
+                <strong style="font-size: 0.92rem;">${product.title}</strong>
+                <p style="margin: 2px 0 0; color: var(--muted); font-size: 0.82rem;">Size ${item.size} × ${item.quantity}</p>
+              </div>
+              <strong style="font-size: 0.92rem;">${formatMoney(lineTotal)}</strong>
+            </div>
+          `;
+        }).join('');
+
+        itemsEl.innerHTML = rows;
+        subtotalEl.textContent = formatMoney(subtotal);
+
+        // Shipping
+        const shippingRadio = document.querySelector('input[name="shipping"]:checked');
+        shippingCost = shippingRadio && shippingRadio.value === 'express' ? 149 : 0;
+        shippingEl.textContent = shippingCost > 0 ? formatMoney(shippingCost) : 'Free';
+
+        // Discount
+        let discount = 0;
+        if (appliedCoupon) {
+          if (appliedCoupon.type === 'percent') {
+            discount = Math.round(subtotal * appliedCoupon.value / 100);
+          } else {
+            discount = Math.min(appliedCoupon.value, subtotal);
+          }
+          discountRow.style.display = 'flex';
+          discountEl.textContent = '- ' + formatMoney(discount);
+        } else {
+          discountRow.style.display = 'none';
+        }
+
+        const total = Math.max(0, subtotal - discount + shippingCost);
+        totalEl.textContent = formatMoney(total);
+      }
+
+      // Coupon logic
+      document.getElementById('apply-coupon-btn')?.addEventListener('click', () => {
+        const input = document.getElementById('coupon-input');
+        const msgEl = document.getElementById('coupon-message');
+        const code = (input.value || '').trim().toUpperCase();
+
+        if (!code) {
+          msgEl.textContent = 'Please enter a coupon code.';
+          msgEl.style.display = 'block';
+          msgEl.style.color = 'var(--muted)';
+          return;
+        }
+
+        const coupon = COUPON_CODES[code];
+        if (coupon) {
+          appliedCoupon = coupon;
+          msgEl.textContent = '✓ Coupon applied — ' + coupon.label;
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#2d8a4e';
+          input.disabled = true;
+          input.style.opacity = '0.6';
+          document.getElementById('apply-coupon-btn').textContent = 'Applied';
+          document.getElementById('apply-coupon-btn').disabled = true;
+          renderCheckout();
+        } else {
+          msgEl.textContent = 'Invalid coupon code. Please try again.';
+          msgEl.style.display = 'block';
+          msgEl.style.color = '#c0392b';
+        }
+      });
+
+      // Shipping method change
+      document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener('change', renderCheckout);
+      });
+
+      // Place order
+      document.querySelector('[data-action="place-order"]')?.addEventListener('click', () => {
+        const btn = document.querySelector('[data-action="place-order"]');
+        const cart = getCart();
+        if (!cart.length) {
+          if (typeof showToast === 'function') showToast('Your cart is empty.');
+          return;
+        }
+        const origText = btn.textContent;
+        btn.textContent = 'Processing...';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+          localStorage.setItem('zariya.cart.v2', '[]');
+          document.querySelectorAll('[data-cart-count]').forEach(n => n.textContent = '0');
+          btn.textContent = '✓ Order placed!';
+          btn.style.opacity = '1';
+          if (typeof showToast === 'function') showToast('✓ Order placed successfully! Thank you for shopping with Zariya.');
+          setTimeout(() => {
+            btn.textContent = origText;
+            btn.disabled = false;
+            renderCheckout();
+          }, 3000);
+        }, 1500);
+      });
+
+      // Payment method toggle
+      document.querySelectorAll('input[name="method"]').forEach(radio => {
+        radio.addEventListener('change', () => {
+          const cardFields = document.getElementById('card-fields');
+          if (cardFields) {
+            cardFields.style.display = radio.value === 'card' ? 'block' : 'none';
+          }
+        });
+      });
+
+      // Init
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(renderCheckout, 100);
+      });
+    })();
+  </script>
+</body>
+
+</html>
