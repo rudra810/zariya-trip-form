@@ -383,9 +383,83 @@
 
   .field-error.show { display: block; }
 
+  /* ── PERKS / WHAT'S INCLUDED ── */
+  .perks-section {
+    margin-top: 56px;
+  }
+
+  .perks-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 36px 32px;
+    margin-top: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .perks-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 98, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .perks-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .perk-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .perk-item:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .perk-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    background: rgba(201, 169, 98, 0.05);
+  }
+
+  .perk-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .perk-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .perk-desc {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
   /* ── PACKAGE SELECTOR ── */
   .packages-section {
-    margin-top: 56px;
+    margin-top: 48px;
   }
 
   .packages {
@@ -403,7 +477,7 @@
 
   .pkg-card {
     border: 1px solid var(--border);
-    padding: 32px 28px;
+    padding: 28px 24px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -411,6 +485,7 @@
     background: var(--card);
     border-radius: 8px;
     display: block;
+    text-align: center;
   }
 
   .pkg-card::before {
@@ -438,21 +513,15 @@
     opacity: 0.05; 
   }
 
-  .pkg-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-
   .pkg-badge {
     font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.35em;
+    font-size: 10px;
+    letter-spacing: 0.3em;
     color: var(--muted);
     text-transform: uppercase;
     position: relative;
     z-index: 1;
+    margin-bottom: 16px;
   }
 
   .pkg-option:checked + .pkg-card .pkg-badge {
@@ -460,19 +529,22 @@
   }
 
   .pkg-recommended {
+    display: inline-block;
     background: var(--gold);
     color: var(--black);
     font-family: 'Space Mono', monospace;
     font-size: 8px;
     letter-spacing: 0.2em;
-    padding: 4px 10px;
+    padding: 3px 8px;
     border-radius: 2px;
     text-transform: uppercase;
+    margin-left: 8px;
+    vertical-align: middle;
   }
 
   .pkg-price {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
+    font-size: 52px;
     line-height: 1;
     color: var(--white);
     transition: color 0.3s;
@@ -487,7 +559,7 @@
 
   .pkg-currency {
     font-family: 'Inter', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     vertical-align: super;
     opacity: 0.8;
@@ -495,65 +567,39 @@
 
   .pkg-period {
     font-family: 'Space Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 0.1em;
     position: relative;
     z-index: 1;
   }
 
-  .pkg-divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
-    margin: 20px 0;
+  .pkg-person-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
     position: relative;
     z-index: 1;
-  }
-
-  .pkg-perks {
-    list-style: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .pkg-perks li {
-    font-size: 13px;
-    color: var(--cream);
-    line-height: 1.6;
-    padding: 8px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s;
   }
 
-  .pkg-perks li::before {
-    content: '✦';
-    color: var(--gold);
-    font-size: 8px;
-    margin-top: 4px;
-    flex-shrink: 0;
-  }
-
-  .pkg-option:checked + .pkg-card .pkg-perks li {
+  .pkg-option:checked + .pkg-card .pkg-person-icon {
     opacity: 1;
   }
 
   .check-icon {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 28px;
-    height: 28px;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
     border: 1.5px solid var(--border-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    font-size: 12px;
+    font-size: 11px;
     color: transparent;
     z-index: 2;
   }
@@ -1083,6 +1129,22 @@
       grid-column: 1;
     }
 
+    .perks-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .perk-item:nth-last-child(-n+2) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .perk-item:last-child {
+      border-bottom: none;
+    }
+
+    .perks-card {
+      padding: 24px 20px;
+    }
+
     .packages {
       grid-template-columns: 1fr;
     }
@@ -1155,15 +1217,15 @@
   <div class="hero-meta">
     <div class="meta-item">
       <span class="meta-label">Date</span>
-      <span class="meta-value">April 12-13, 2026</span>
+      <span class="meta-value">April 26, 2026</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">Starting Point</span>
-      <span class="meta-value">Dehradun</span>
+      <span class="meta-value">UPES Bidholi, Dehradun</span>
     </div>
     <div class="meta-item">
-      <span class="meta-label">Seats</span>
-      <span class="meta-value">Limited Availability</span>
+      <span class="meta-label">Riders</span>
+      <span class="meta-value">Limited 30 riders</span>
     </div>
   </div>
 </section>
@@ -1285,51 +1347,74 @@
       </div>
     </div>
 
+    <!-- WHAT'S INCLUDED -->
+    <div class="perks-section">
+      <div class="section-header">
+        <p class="section-label">Every Rider Gets</p>
+        <h2 class="section-title">What's Included</h2>
+      </div>
+
+      <div class="perks-card">
+        <div class="perks-grid">
+          <div class="perk-item">
+            <div class="perk-icon">☕</div>
+            <div class="perk-text">
+              <span class="perk-title">Refreshments</span>
+              <span class="perk-desc">Energizing stops along the route</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">👕</div>
+            <div class="perk-text">
+              <span class="perk-title">Customized Zariya Merchandise</span>
+              <span class="perk-desc">Exclusive ride-day gear</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🚐</div>
+            <div class="perk-text">
+              <span class="perk-title">Support Vehicle & Safety Backup</span>
+              <span class="perk-desc">Ride with confidence</span>
+            </div>
+          </div>
+          <div class="perk-item">
+            <div class="perk-icon">🏁</div>
+            <div class="perk-text">
+              <span class="perk-title">Limited 30 Riders Only</span>
+              <span class="perk-desc">An intimate, curated experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- PACKAGE SELECTION -->
     <div class="packages-section">
       <div class="section-header">
-        <p class="section-label">Select Experience</p>
-        <h2 class="section-title">Choose Your Package</h2>
+        <p class="section-label">Select Package</p>
+        <h2 class="section-title">Riding Solo or with a Partner?</h2>
       </div>
 
       <div class="packages">
         <div>
-          <input type="radio" name="package" id="pkg-prestige" value="prestige-699" class="pkg-option" checked/>
-          <label for="pkg-prestige" class="pkg-card">
+          <input type="radio" name="package" id="pkg-elite" value="elite-399" class="pkg-option" checked/>
+          <label for="pkg-elite" class="pkg-card">
             <div class="check-icon">✓</div>
-            <div class="pkg-header">
-              <div class="pkg-badge">Prestige Collection</div>
-              <div class="pkg-recommended">Recommended</div>
-            </div>
-            <div class="pkg-price"><span class="pkg-currency">₹</span>699</div>
-            <div class="pkg-period">per person • all inclusive</div>
-            <div class="pkg-divider"></div>
-            <ul class="pkg-perks">
-              <li>Exclusive Zariya merchandise drop</li>
-              <li>Gourmet trail breakfast & refreshments</li>
-              <li>Professional group photography</li>
-              <li>Premium ride convoy position</li>
-              <li>Commemorative ride certificate</li>
-            </ul>
+            <div class="pkg-person-icon">🏍️</div>
+            <div class="pkg-badge">Solo Rider</div>
+            <div class="pkg-price"><span class="pkg-currency">₹</span>399</div>
+            <div class="pkg-period">per person</div>
           </label>
         </div>
 
         <div>
-          <input type="radio" name="package" id="pkg-elite" value="elite-399" class="pkg-option"/>
-          <label for="pkg-elite" class="pkg-card">
+          <input type="radio" name="package" id="pkg-prestige" value="prestige-699" class="pkg-option"/>
+          <label for="pkg-prestige" class="pkg-card">
             <div class="check-icon">✓</div>
-            <div class="pkg-header">
-              <div class="pkg-badge">Elite Access</div>
-            </div>
-            <div class="pkg-price"><span class="pkg-currency">₹</span>399</div>
-            <div class="pkg-period">per person</div>
-            <div class="pkg-divider"></div>
-            <ul class="pkg-perks">
-              <li>Zariya collection preview</li>
-              <li>Refreshments at scenic stops</li>
-              <li>Official ride entry</li>
-              <li>Community access & networking</li>
-            </ul>
+            <div class="pkg-person-icon">🏍️🏍️</div>
+            <div class="pkg-badge">Duo Ride <span class="pkg-recommended">Best Value</span></div>
+            <div class="pkg-price"><span class="pkg-currency">₹</span>699</div>
+            <div class="pkg-period">for 2 people</div>
           </label>
         </div>
       </div>
@@ -1407,7 +1492,7 @@
       </div>
       <div class="success-detail-row">
         <span class="success-detail-label">Date</span>
-        <span class="success-detail-value">April 12-13, 2026</span>
+        <span class="success-detail-value">April 26, 2026</span>
       </div>
       <div class="success-detail-row">
         <span class="success-detail-label">Starting Point</span>
@@ -1646,7 +1731,7 @@
     
     // Get package details
     const selectedPackage = document.querySelector('input[name="package"]:checked').value;
-    const isPrestige = selectedPackage.includes('prestige');
+    const isDuo = selectedPackage.includes('prestige');
     
     // Gather form data
     const formData = {
@@ -1659,8 +1744,8 @@
       emergencyName: document.getElementById('emergency-name').value.trim(),
       emergencyPhone: document.getElementById('emergency-phone').value.trim(),
       package: selectedPackage,
-      packageName: isPrestige ? 'Prestige Collection' : 'Elite Access',
-      packageAmount: isPrestige ? '699' : '399'
+      packageName: isDuo ? 'Duo Package (2 people)' : 'Solo Package (1 person)',
+      packageAmount: isDuo ? '699' : '399'
     };
     
     // Submit to Google Sheets
@@ -1677,7 +1762,7 @@
     // Update success overlay with data
     document.getElementById('summary-name').textContent = formData.name;
     document.getElementById('summary-package').textContent = 
-      isPrestige ? 'Prestige Collection — ₹699' : 'Elite Access — ₹399';
+      isDuo ? 'Duo Package (2 people) — ₹699' : 'Solo Package (1 person) — ₹399';
     
     // Reset loading state
     submitBtn.classList.remove('loading');
@@ -1699,7 +1784,7 @@
     form.reset();
     
     // Re-check the default package
-    document.getElementById('pkg-prestige').checked = true;
+    document.getElementById('pkg-elite').checked = true;
   }
 
   // Smooth scroll behavior for internal links
