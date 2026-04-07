@@ -634,13 +634,13 @@
   .product-grid,
   .product-grid-vertical,
   .product-grid-full {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
   }
 }
 
-.product-grid > *,
-.product-grid-vertical > *,
-.product-grid-full > * {
+.product-grid-full > *,
+.product-grid-vertical > * {
   width: 100% !important;
   flex: none !important;
 }
@@ -1399,7 +1399,7 @@
 
 @media (max-width: 480px) {
   .product-grid-full {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .contact-form .field-grid {

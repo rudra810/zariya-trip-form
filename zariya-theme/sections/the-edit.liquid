@@ -11,7 +11,7 @@
       <button class="slider-arrow slider-arrow-left is-hidden" type="button" data-slider="edit-grid" data-dir="left" aria-label="Scroll left">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <div id="edit-grid" class="product-grid">
+      <div id="edit-grid" class="product-slider">
         {% assign edit_collection = collections[section.settings.collection] | default: collections.all %}
         {% for product in edit_collection.products limit: section.settings.products_to_show %}
           {% render 'product-card', product: product %}

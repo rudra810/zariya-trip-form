@@ -2739,27 +2739,6 @@ select {
     width: 240px;
   }
 
-  /* The Edit section: make product grid a horizontal slider on mobile */
-  #the-edit .product-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    gap: 14px;
-    padding-bottom: 12px;
-    scrollbar-width: none;
-  }
-
-  #the-edit .product-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  #the-edit .product-grid > * {
-    flex: 0 0 220px;
-    scroll-snap-align: start;
-    width: 220px;
-  }
-
   /* Collection pages: force 2-column grid */
   .product-grid-full {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -3177,12 +3156,6 @@ select {
     padding: 8px;
     min-width: 38px;
     min-height: 38px;
-  }
-
-  /* The Edit slider on very small screens */
-  #the-edit .product-grid > * {
-    flex: 0 0 190px;
-    width: 190px;
   }
 
   /* Marquee readability on small screens */
