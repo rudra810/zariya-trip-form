@@ -5,7 +5,7 @@
       <p class="footer-copy">{{ section.settings.footer_text }}</p>
     </div>
     <div>
-      <p class="eyebrow">Contact</p>
+      <p class="eyebrow">Connect</p>
       <div class="footer-social-icons">
         {% if section.settings.email %}
           <a href="mailto:{{ section.settings.email }}" class="footer-icon-link" aria-label="Email" title="Email us">
@@ -15,15 +15,13 @@
             </svg>
           </a>
         {% endif %}
-        {% if section.settings.instagram %}
-          <a href="{{ section.settings.instagram }}" target="_blank" rel="noreferrer" class="footer-icon-link" aria-label="Instagram" title="Follow on Instagram">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-              <circle cx="12" cy="12" r="5"></circle>
-              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"></circle>
-            </svg>
-          </a>
-        {% endif %}
+        <a href="{{ section.settings.instagram | default: 'https://www.instagram.com/zariya.wear?igsh=MWEwaTNlbGVyZXU4bw==' }}" target="_blank" rel="noreferrer" class="footer-icon-link" aria-label="Instagram" title="Follow on Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+            <circle cx="12" cy="12" r="5"></circle>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
         {% if section.settings.whatsapp %}
           <a href="https://wa.me/{{ section.settings.whatsapp }}" target="_blank" rel="noreferrer" class="footer-icon-link" aria-label="WhatsApp" title="Chat on WhatsApp">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none">

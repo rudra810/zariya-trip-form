@@ -918,27 +918,37 @@ details[open] .chevron-icon {
 }
 
 .product-card {
-  overflow: hidden;
+  overflow: visible;
   background: var(--bg);
   transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+  position: relative;
 }
 
 .product-card:hover {
-  transform: translateY(-6px) !important;
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.14), 0 16px 32px rgba(0, 0, 0, 0.08);
+  z-index: 5;
 }
 
 .product-card-media {
   display: block;
   position: relative;
   aspect-ratio: 3 / 4;
-  overflow: hidden;
+  overflow: visible;
   border-bottom: 1px solid var(--line);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .product-card-art,
-.product-gallery-main,
 .search-result-art {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: transparent;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.product-gallery-main {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -946,8 +956,16 @@ details[open] .chevron-icon {
 }
 
 .product-card-art::before,
-.product-gallery-main::before,
 .search-result-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: none;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.product-gallery-main::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -956,8 +974,16 @@ details[open] .chevron-icon {
 }
 
 .product-card-art::after,
-.product-gallery-main::after,
 .search-result-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: none;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.product-gallery-main::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -966,7 +992,17 @@ details[open] .chevron-icon {
 }
 
 .product-card-image,
-.search-result-image,
+.search-result-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  z-index: 0;
+  transition: transform 0.6s var(--ease-out);
+}
+
 .drawer-item-image,
 .product-hero-image {
   position: absolute;
@@ -980,7 +1016,8 @@ details[open] .chevron-icon {
 }
 
 .product-card:hover .product-card-image {
-  transform: scale(1.06);
+  transform: scale(1.15) translateY(-12px);
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
 }
 
 .product-card-art span,
@@ -3579,4 +3616,187 @@ select {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+/* ===== LOOKBOOK BANNER SECTION ===== */
+.lookbook-banner {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.lookbook-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.lookbook-text .eyebrow {
+  margin-bottom: 12px;
+}
+
+.lookbook-text h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+
+.lookbook-desc {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+  margin: 0 0 32px;
+  max-width: 48ch;
+}
+
+.lookbook-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.lookbook-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lookbook-stats strong {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.lookbook-stats span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.lookbook-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lookbook-card {
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line);
+}
+
+.lookbook-card-main {
+  background: var(--bg);
+}
+
+.lookbook-card-main .eyebrow {
+  margin-bottom: 8px;
+}
+
+.lookbook-card-main h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.lookbook-card-main p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.lookbook-card-accent {
+  background: var(--paper);
+  color: #fff;
+  border-color: transparent;
+  position: relative;
+}
+
+.lookbook-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 4rem;
+  line-height: 0.6;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.lookbook-card-accent p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 16px;
+  font-style: italic;
+}
+
+.lookbook-author {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Lookbook responsive */
+@media (max-width: 768px) {
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .lookbook-stats {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .lookbook-text h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+}
+
+/* ===== MOBILE NAV INSTAGRAM LINK ===== */
+.mobile-nav-insta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--accent);
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+  transition: background 0.2s ease;
+}
+
+.mobile-nav-insta:hover {
+  background: var(--bg-soft);
+}
+
+.mobile-nav-insta svg {
+  flex-shrink: 0;
+}
+
+/* ===== HIDE SEARCH DRAWER (removed) ===== */
+.search-drawer {
+  display: none !important;
+}
+
+/* ===== PRODUCT SLIDER OVERFLOW FIX ===== */
+.product-slider {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-top: 16px;
+}
+
+.slider-wrapper {
+  overflow: visible;
 }

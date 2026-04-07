@@ -27,6 +27,35 @@
         "view_all_link": "/collections/all"
       }
     },
+    "lookbook-banner": {
+      "type": "lookbook-banner",
+      "settings": {
+        "eyebrow": "Why Zariya",
+        "heading": "Not fast fashion. Built to last.",
+        "description": "Every piece is cut from 240 GSM premium cotton, double-stitched at stress points, and designed to hold its shape through hundreds of washes. We don't chase trends — we build wardrobe anchors.",
+        "stat_1_value": "240 GSM",
+        "stat_1_label": "Premium cotton",
+        "stat_2_value": "Limited",
+        "stat_2_label": "Edition drops",
+        "stat_3_value": "24-48h",
+        "stat_3_label": "Dispatch time",
+        "cta_text": "Explore the collection",
+        "card_eyebrow": "Craftsmanship",
+        "card_heading": "Made to move with you.",
+        "card_text": "From structured shoulders to drop-cut hems — every silhouette is designed for comfort without compromising on form.",
+        "quote_text": "Zariya pieces feel like they were made just for me. The weight, the fit, the detailing — nothing else compares at this price.",
+        "quote_author": "A Zariya customer"
+      }
+    },
+    "the-edit": {
+      "type": "the-edit",
+      "settings": {
+        "eyebrow": "The edit",
+        "heading": "Pieces with stronger contrast.",
+        "link_text": "Shop hoodies",
+        "products_to_show": 8
+      }
+    },
     "brand-pillars": {
       "type": "brand-pillars",
       "blocks": {
@@ -70,35 +99,54 @@
           "type": "faq",
           "settings": {
             "question": "How fast do you ship?",
-            "answer": "Most orders are prepared within 24-48 hours and dispatched with tracking."
+            "answer": "Most orders are prepared within 24-48 hours and dispatched with tracking. Delivery typically takes 4-7 business days depending on your location."
           }
         },
         "faq2": {
           "type": "faq",
           "settings": {
             "question": "Can I exchange sizes?",
-            "answer": "Yes. Reach out via WhatsApp or email and we'll sort it quickly."
+            "answer": "Yes. Reach out via WhatsApp or email within 7 days of delivery and we'll sort your exchange quickly. Items must be unworn with tags attached."
           }
         },
         "faq3": {
           "type": "faq",
           "settings": {
             "question": "What areas do you deliver to?",
-            "answer": "We deliver across India. International shipping is available on request — reach out to our support team for details."
+            "answer": "We deliver across India with free shipping on orders above ₹999. International shipping is available on request — reach out to our support team for details."
+          }
+        },
+        "faq4": {
+          "type": "faq",
+          "settings": {
+            "question": "What fabric do you use?",
+            "answer": "We use 240 GSM premium cotton fleece for our hoodies and heavyweight cotton for tees. Every fabric is pre-shrunk, bio-washed for softness, and built to hold shape wash after wash."
+          }
+        },
+        "faq5": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I find my size?",
+            "answer": "Each product page has a detailed size chart. If you're between sizes, we recommend going one size up for a relaxed fit. Feel free to DM us on Instagram or WhatsApp for personalized sizing help."
+          }
+        },
+        "faq6": {
+          "type": "faq",
+          "settings": {
+            "question": "Are your drops limited edition?",
+            "answer": "Yes. Each collection is produced in limited quantities. Once a drop sells out, it's gone. Follow us on Instagram @zariya.wear to be the first to know about new releases."
+          }
+        },
+        "faq7": {
+          "type": "faq",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer hassle-free returns within 7 days of delivery. Items should be unused, unwashed, and in original packaging. Refunds are processed within 5-7 business days after we receive the item."
           }
         }
       },
-      "block_order": ["faq1", "faq2", "faq3"]
-    },
-    "the-edit": {
-      "type": "the-edit",
-      "settings": {
-        "eyebrow": "The edit",
-        "heading": "Pieces with stronger contrast.",
-        "link_text": "Shop hoodies",
-        "products_to_show": 8
-      }
+      "block_order": ["faq1", "faq2", "faq3", "faq4", "faq5", "faq6", "faq7"]
     }
   },
-  "order": ["hero", "featured-products", "the-edit", "brand-pillars", "faq"]
+  "order": ["hero", "featured-products", "lookbook-banner", "the-edit", "brand-pillars", "faq"]
 }
