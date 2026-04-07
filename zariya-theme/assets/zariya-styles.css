@@ -348,6 +348,23 @@ img {
   display: none;
 }
 
+/* Mobile menu group - wraps menu toggle and mobile logo */
+.mobile-menu-group {
+  display: none;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-logo-text {
+  display: none;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* Header icons - hidden on desktop, shown on mobile */
 .header-actions svg,
 .menu-toggle svg {
@@ -692,6 +709,25 @@ img {
 }
 
 .faq-grid details.panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+/* Always-visible FAQ items */
+.faq-grid .faq-item-open {
+  padding: 28px 32px;
+}
+
+.faq-grid .faq-item-open .faq-question {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+}
+
+.faq-grid .faq-item-open .faq-answer {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
@@ -2520,8 +2556,21 @@ select {
     display: none;
   }
 
+  .mobile-menu-group {
+    display: flex;
+  }
+
   .menu-toggle {
     display: inline-flex;
+  }
+
+  .mobile-logo-text {
+    display: block;
+  }
+
+  /* Hide center logo on mobile */
+  .logo {
+    display: none;
   }
 
   .header-actions {
@@ -3195,6 +3244,11 @@ select {
     min-height: 38px;
   }
 
+  .mobile-logo-text {
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+  }
+
   /* Marquee readability on small screens */
   .marquee-track {
     font-size: 0.65rem;
@@ -3568,6 +3622,11 @@ select {
     padding: 8px 12px;
     font-size: 0.58rem;
     gap: 20px;
+  }
+
+  .mobile-logo-text {
+    font-size: 1rem;
+    letter-spacing: 0.14em;
   }
 
   .panel,

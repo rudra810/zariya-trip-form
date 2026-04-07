@@ -7,7 +7,7 @@
         <p class="lookbook-desc">{{ section.settings.description }}</p>
         <div class="lookbook-stats">
           <div>
-            <strong>{{ section.settings.stat_1_value }}</strong>
+            <strong class="gsm-animated-value" data-gsm-values="240,320,430">240 GSM</strong>
             <span>{{ section.settings.stat_1_label }}</span>
           </div>
           <div>
@@ -38,6 +38,83 @@
     </div>
   </div>
 </section>
+
+<style>
+  .gsm-animated-value {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gsm-animated-value .gsm-number {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .gsm-animated-value .gsm-number.fade-out {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  
+  .gsm-animated-value .gsm-number.fade-in {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  
+  .gsm-animated-value .gsm-number.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const gsmElement = document.querySelector('.gsm-animated-value');
+    if (!gsmElement) return;
+    
+    const gsmValues = [240, 320, 430];
+    let currentIndex = 0;
+    
+    // Wrap the content for animation
+    gsmElement.innerHTML = '<span class="gsm-number active">' + gsmValues[0] + ' GSM</span>';
+    
+    function animateGSM() {
+      const currentSpan = gsmElement.querySelector('.gsm-number');
+      
+      // Fade out current
+      currentSpan.classList.remove('active');
+      currentSpan.classList.add('fade-out');
+      
+      // Move to next value
+      currentIndex = (currentIndex + 1) % gsmValues.length;
+      
+      setTimeout(() => {
+        // Create new span with next value
+        const newSpan = document.createElement('span');
+        newSpan.className = 'gsm-number fade-in';
+        newSpan.textContent = gsmValues[currentIndex] + ' GSM';
+        gsmElement.innerHTML = '';
+        gsmElement.appendChild(newSpan);
+        
+        // Trigger reflow and animate in
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            newSpan.classList.remove('fade-in');
+            newSpan.classList.add('active');
+          });
+        });
+      }, 250);
+    }
+    
+    // Start animation loop
+    setInterval(animateGSM, 2000);
+  });
+</script>
 
 {% schema %}
 {

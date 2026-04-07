@@ -1,26 +1,45 @@
-<section class="section">
-  <div class="container split-grid">
-    <article class="panel reveal">
-      <p class="eyebrow">{{ section.settings.support_eyebrow }}</p>
-      <h2>{{ section.settings.support_heading }}</h2>
-      <p>{{ section.settings.support_text }}</p>
-      <div class="inline-actions">
-        {% if section.settings.support_link %}
-          <a class="button button-ghost" href="{{ section.settings.support_link }}">Get support</a>
-        {% endif %}
-      </div>
-    </article>
-    <article class="panel reveal faq-panel">
-      <p class="eyebrow">FAQ</p>
+<section class="section faq-section-open">
+  <div class="container">
+    <div class="faq-list reveal">
       {% for block in section.blocks %}
-        <details {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
-          <summary>{{ block.settings.question }}</summary>
-          <p>{{ block.settings.answer }}</p>
-        </details>
+        <div class="faq-item" {{ block.shopify_attributes }}>
+          <h3 class="faq-question">{{ block.settings.question }}</h3>
+          <p class="faq-answer">{{ block.settings.answer }}</p>
+        </div>
       {% endfor %}
-    </article>
+    </div>
   </div>
 </section>
+
+<style>
+  .faq-section-open .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-section-open .faq-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border, #e5e5e5);
+  }
+  
+  .faq-section-open .faq-item:last-child {
+    border-bottom: none;
+  }
+  
+  .faq-section-open .faq-question {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+  
+  .faq-section-open .faq-answer {
+    color: var(--color-text-muted, #666);
+    line-height: 1.7;
+  }
+</style>
 
 {% schema %}
 {
