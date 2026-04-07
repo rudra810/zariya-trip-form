@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zariya – Garhwal Chapter 1 Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .poster {
+    width: 2480px;
+    height: 3508px;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+    color: #faf9f6;
+  }
+
+  /* ── HERO IMAGE SECTION ── */
+  .hero-image {
+    position: relative;
+    width: 100%;
+    height: 1050px;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6) contrast(1.1) saturate(1.15);
+  }
+
+  /* Gradient overlays */
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.75) 0%,
+      rgba(10, 10, 10, 0.1) 35%,
+      rgba(10, 10, 10, 0.05) 55%,
+      rgba(10, 10, 10, 0.85) 90%,
+      rgba(10, 10, 10, 1) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(201, 169, 98, 0.08) 0%,
+      transparent 40%
+    );
+    z-index: 1;
+  }
+
+  /* ── TOP HEADER OVERLAY ── */
+  .top-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    padding: 60px 100px 0;
+  }
+
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #faf9f6;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+
+  .chapter-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    letter-spacing: 0.4em;
+    color: #c9a962;
+    text-transform: uppercase;
+    margin-top: 10px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  }
+
+  /* ── TAGLINE ON IMAGE ── */
+  .hero-tagline {
+    position: absolute;
+    bottom: 70px;
+    left: 100px;
+    z-index: 5;
+  }
+
+  .tagline-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #faf9f6;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.7);
+  }
+
+  .tagline-main .accent {
+    color: #c9a962;
+    font-style: italic;
+  }
+
+  .tagline-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: rgba(250, 249, 246, 0.65);
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  /* ── URGENCY BANNER ── */
+  .urgency-strip {
+    background: linear-gradient(90deg, #c9a962 0%, #e4d4a0 50%, #c9a962 100%);
+    padding: 20px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .urgency-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0a0a0a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .urgency-dot {
+    width: 10px;
+    height: 10px;
+    background: #0a0a0a;
+    border-radius: 50%;
+  }
+
+  /* ── DETAILS SECTION ── */
+  .details-section {
+    padding: 40px 100px 20px;
+    position: relative;
+  }
+
+  .details-section::before {
+    content: '';
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  .stat {
+    text-align: center;
+    flex: 1;
+    position: relative;
+  }
+
+  .stat:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    height: 80%;
+    width: 1px;
+    background: rgba(201, 169, 98, 0.25);
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: #c9a962;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 0.35em;
+    color: rgba(250, 249, 246, 0.45);
+    text-transform: uppercase;
+  }
+
+  /* ── ROUTE ── */
+  .route-section {
+    margin-bottom: 30px;
+  }
+
+  .section-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 0.4em;
+    color: #c9a962;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 2px;
+    background: #c9a962;
+  }
+
+  .route-flow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 10px 0;
+  }
+
+  .route-stop {
+    padding: 14px 26px;
+    border: 2px solid rgba(201, 169, 98, 0.3);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #faf9f6;
+    background: rgba(201, 169, 98, 0.06);
+    position: relative;
+  }
+
+  .route-stop.highlight {
+    background: rgba(201, 169, 98, 0.15);
+    border-color: #c9a962;
+    color: #c9a962;
+    border-width: 2px;
+    font-weight: 600;
+  }
+
+  .route-arrow {
+    font-size: 28px;
+    color: rgba(201, 169, 98, 0.4);
+    margin: 0 10px;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section {
+    margin-bottom: 30px;
+  }
+
+  .pricing-cards {
+    display: flex;
+    gap: 30px;
+  }
+
+  .price-card {
+    flex: 1;
+    border: 2px solid rgba(201, 169, 98, 0.25);
+    border-radius: 16px;
+    padding: 36px 40px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(17, 17, 17, 0.8);
+  }
+
+  .price-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201, 169, 98, 0.06) 0%, transparent 60%);
+  }
+
+  .price-card.featured {
+    border-color: #c9a962;
+    border-width: 2px;
+    box-shadow: 0 0 60px rgba(201, 169, 98, 0.12);
+  }
+
+  .price-card.featured::after {
+    content: 'BEST VALUE';
+    position: absolute;
+    top: 28px;
+    right: -45px;
+    background: #c9a962;
+    color: #0a0a0a;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 8px 60px;
+    transform: rotate(45deg);
+  }
+
+  .price-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    letter-spacing: 0.3em;
+    color: rgba(250, 249, 246, 0.5);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+  }
+
+  .price-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 700;
+    color: #c9a962;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+  }
+
+  .price-amount .currency {
+    font-size: 38px;
+    vertical-align: super;
+    font-weight: 500;
+  }
+
+  .price-per {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: rgba(250, 249, 246, 0.45);
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── PERKS ── */
+  .perks-section-poster {
+    margin-bottom: 30px;
+  }
+
+  .perks-grid-poster {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .perk-card-poster {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 28px;
+    border: 2px solid rgba(201, 169, 98, 0.15);
+    border-radius: 12px;
+    background: rgba(17, 17, 17, 0.6);
+  }
+
+  .perk-emoji {
+    font-size: 36px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201, 169, 98, 0.08);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .perk-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .perk-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #faf9f6;
+  }
+
+  .perk-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: rgba(250, 249, 246, 0.4);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── BOTTOM SECTION – CTA + QR ── */
+  .bottom-section {
+    padding: 0 100px 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+  }
+
+  .cta-side {
+    flex: 1;
+  }
+
+  .cta-fire {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .cta-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 600;
+    color: #faf9f6;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .cta-text .gold {
+    color: #c9a962;
+  }
+
+  .cta-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    color: rgba(250, 249, 246, 0.5);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .cta-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(201, 169, 98, 0.1);
+    border: 2px solid rgba(201, 169, 98, 0.3);
+    border-radius: 14px;
+    padding: 16px 24px;
+  }
+
+  .cta-date-icon {
+    font-size: 28px;
+  }
+
+  .cta-date-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cta-date-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: rgba(250, 249, 246, 0.4);
+    text-transform: uppercase;
+  }
+
+  .cta-date-value {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #c9a962;
+  }
+
+  /* QR Section */
+  .qr-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .qr-box {
+    width: 260px;
+    height: 260px;
+    background: #faf9f6;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 12px 50px rgba(201, 169, 98, 0.15);
+  }
+
+  .qr-placeholder {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    color: #999;
+    text-align: center;
+    letter-spacing: 0.1em;
+  }
+
+  .qr-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    color: rgba(250, 249, 246, 0.4);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ── FOOTER BAR ── */
+  .poster-footer {
+    border-top: 2px solid rgba(201, 169, 98, 0.15);
+    padding: 24px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand-poster {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .footer-logo-poster {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #c9a962;
+    letter-spacing: 0.15em;
+  }
+
+  .footer-tagline-poster {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: rgba(250, 249, 246, 0.3);
+    letter-spacing: 0.1em;
+    border-left: 2px solid rgba(201, 169, 98, 0.25);
+    padding-left: 28px;
+  }
+
+  .footer-social {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    color: rgba(250, 249, 246, 0.5);
+    letter-spacing: 0.05em;
+  }
+
+  /* Grain texture */
+  .poster::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Decorative elements */
+  .corner-accent {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgba(201, 169, 98, 0.15);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .corner-accent.top-right {
+    top: 28px;
+    right: 28px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .corner-accent.bottom-left {
+    bottom: 28px;
+    left: 28px;
+    border-right: none;
+    border-top: none;
+  }
+
+  /* Limited seats pulse */
+  .seats-pulse {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .pulse-dot {
+    width: 14px;
+    height: 14px;
+    background: #e74c3c;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(231, 76, 60, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+  }
+
+  .seats-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: #e74c3c;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  /* Poster scale for browser viewing */
+  @media (max-width: 2520px) {
+    .poster {
+      transform: scale(0.42);
+      transform-origin: top center;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .poster {
+      transform: scale(0.35);
+      transform-origin: top center;
+    }
+  }
+
+  /* Ambient glow on poster */
+  .poster-glow {
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
+    background: radial-gradient(circle, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+  <!-- Corner decorations -->
+  <div class="corner-accent top-right"></div>
+  <div class="corner-accent bottom-left"></div>
+  <div class="poster-glow"></div>
+
+  <!-- ── HERO IMAGE ── -->
+  <div class="hero-image">
+    <!-- Replace src with your actual image -->
+    <img src="https://images.unsplash.com/photo-1558979158-65a1eaa08691?w=1200&q=80" alt="Tehri Dam Road Mountains" 
+         onerror="this.style.background='linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)'; this.style.display='block'; this.style.width='100%'; this.style.height='100%';" />
+
+    <!-- Top header -->
+    <div class="top-header">
+      <div class="brand-name">ZARIYA</div>
+      <div class="chapter-label">Garhwal Chapter 1</div>
+    </div>
+
+    <!-- Tagline -->
+    <div class="hero-tagline">
+      <div class="tagline-main">
+        Two Wheels.<br/>
+        <span class="accent">One Chapter.</span>
+      </div>
+      <p class="tagline-sub">Sponsored & Powered by Zariya — Proudly Built at UPES</p>
+    </div>
+  </div>
+
+  <!-- ── URGENCY STRIP ── -->
+  <div class="urgency-strip">
+    <div class="urgency-item">
+      <div class="urgency-dot"></div>
+      250 KM
+    </div>
+    <div class="urgency-item">
+      <div class="urgency-dot"></div>
+      Garhwal Elevation
+    </div>
+    <div class="urgency-item">
+      <div class="urgency-dot"></div>
+      Ride with Friends
+    </div>
+    <div class="urgency-item">
+      <div class="urgency-dot"></div>
+      Limited 30 Riders
+    </div>
+  </div>
+
+  <!-- ── DETAILS ── -->
+  <div class="details-section">
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-value">250</div>
+        <div class="stat-label">Kilometers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">30</div>
+        <div class="stat-label">Riders Only</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">1 Day</div>
+        <div class="stat-label">Epic Journey</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">6 AM</div>
+        <div class="stat-label">Flag Off</div>
+      </div>
+    </div>
+
+    <!-- Route -->
+    <div class="route-section">
+      <div class="section-eyebrow">📍 The Route</div>
+      <div class="route-flow">
+        <div class="route-stop">Bidholi</div>
+        <div class="route-arrow">→</div>
+        <div class="route-stop highlight">Rishikesh</div>
+        <div class="route-arrow">→</div>
+        <div class="route-stop highlight">Chamba</div>
+        <div class="route-arrow">→</div>
+        <div class="route-stop highlight">New Tehri</div>
+        <div class="route-arrow">→</div>
+        <div class="route-stop">Dhanaulti</div>
+        <div class="route-arrow">→</div>
+        <div class="route-stop">Dehradun</div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing-section">
+      <div class="section-eyebrow">🔥 Early Rider Launch Offer</div>
+      <div class="pricing-cards">
+        <div class="price-card">
+          <div class="price-type">Solo Rider</div>
+          <div class="price-icon">🏍️</div>
+          <div class="price-amount"><span class="currency">₹</span>399</div>
+          <div class="price-per">per person</div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-type">Duo Ride</div>
+          <div class="price-icon">🏍️🏍️</div>
+          <div class="price-amount"><span class="currency">₹</span>699</div>
+          <div class="price-per">for 2 riders</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Perks -->
+    <div class="perks-section-poster">
+      <div class="section-eyebrow">✦ What You Get</div>
+      <div class="perks-grid-poster">
+        <div class="perk-card-poster">
+          <div class="perk-emoji">👕</div>
+          <div class="perk-info">
+            <span class="perk-name">Customized Zariya Merch</span>
+            <span class="perk-sub">Exclusive ride-day gear with your name</span>
+          </div>
+        </div>
+        <div class="perk-card-poster">
+          <div class="perk-emoji">☕</div>
+          <div class="perk-info">
+            <span class="perk-name">Refreshments</span>
+            <span class="perk-sub">Energizing pit stops along the route</span>
+          </div>
+        </div>
+        <div class="perk-card-poster">
+          <div class="perk-emoji">🛡️</div>
+          <div class="perk-info">
+            <span class="perk-name">Safety Backup</span>
+            <span class="perk-sub">First aid & emergency support ready</span>
+          </div>
+        </div>
+        <div class="perk-card-poster">
+          <div class="perk-emoji">🚐</div>
+          <div class="perk-info">
+            <span class="perk-name">Support Vehicle</span>
+            <span class="perk-sub">Rides with the convoy throughout</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── BOTTOM CTA + QR ── -->
+  <div class="bottom-section">
+    <div class="cta-side">
+      <div class="cta-fire">🔥</div>
+      <div class="cta-text">
+        Don't Just <span class="gold">Watch</span>.<br/>
+        <span class="gold">Ride</span> with Us.
+      </div>
+      <p class="cta-subtext">
+        This isn't a trip. It's a chapter you'll talk about forever.<br/>
+        Your seat is filling fast.
+      </p>
+      <div class="cta-date-badge">
+        <div class="cta-date-icon">📅</div>
+        <div class="cta-date-info">
+          <span class="cta-date-label">Ride Date</span>
+          <span class="cta-date-value">April 26, 2026</span>
+        </div>
+      </div>
+      <div class="seats-pulse">
+        <div class="pulse-dot"></div>
+        <span class="seats-text">Seats Filling Fast</span>
+      </div>
+    </div>
+
+    <div class="qr-side">
+      <div class="qr-box">
+        <div class="qr-placeholder">
+          QR<br/>CODE<br/>HERE
+        </div>
+      </div>
+      <span class="qr-label">Scan to Register</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="poster-footer">
+    <div class="footer-brand-poster">
+      <span class="footer-logo-poster">ZARIYA</span>
+      <span class="footer-tagline-poster">Street. Intentional. Unapologetic.</span>
+    </div>
+    <span class="footer-social">@zariyaofficial</span>
+  </div>
+</div>
+
+</body>
+</html>

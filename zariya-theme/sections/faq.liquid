@@ -1,0 +1,102 @@
+<section class="section">
+  <div class="container split-grid">
+    <article class="panel reveal">
+      <p class="eyebrow">{{ section.settings.support_eyebrow }}</p>
+      <h2>{{ section.settings.support_heading }}</h2>
+      <p>{{ section.settings.support_text }}</p>
+      <div class="inline-actions">
+        {% if section.settings.support_link %}
+          <a class="button button-ghost" href="{{ section.settings.support_link }}">Get support</a>
+        {% endif %}
+      </div>
+    </article>
+    <article class="panel reveal faq-panel">
+      <p class="eyebrow">FAQ</p>
+      {% for block in section.blocks %}
+        <details {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <p>{{ block.settings.answer }}</p>
+        </details>
+      {% endfor %}
+    </article>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "support_eyebrow",
+      "label": "Support eyebrow",
+      "default": "Quick questions"
+    },
+    {
+      "type": "text",
+      "id": "support_heading",
+      "label": "Support heading",
+      "default": "Everything you need."
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support text",
+      "default": "Browse the line, place an order, or reach out for sizing help and order support."
+    },
+    {
+      "type": "url",
+      "id": "support_link",
+      "label": "Support link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How fast do you ship?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Most orders are prepared within 24-48 hours and dispatched with tracking."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How fast do you ship?",
+            "answer": "Most orders are prepared within 24-48 hours and dispatched with tracking."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I exchange sizes?",
+            "answer": "Yes. Reach out via WhatsApp or email and we'll sort it quickly."
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What areas do you deliver to?",
+            "answer": "We deliver across India. International shipping is available on request — reach out to our support team for details."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

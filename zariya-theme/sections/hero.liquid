@@ -1,0 +1,133 @@
+{%- comment -%}
+  Hero section - matches static-clone design
+  Uses custom images OR product images as slideshow background
+{%- endcomment -%}
+<section class="hero section hero-slideshow">
+  <!-- Slideshow background images -->
+  <div class="hero-slides" id="hero-slides">
+    {% assign has_custom_images = false %}
+    {% for block in section.blocks %}
+      {% if block.settings.image %}
+        {% assign has_custom_images = true %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if has_custom_images %}
+      {%- comment -%} Use custom uploaded images {%- endcomment -%}
+      {% for block in section.blocks %}
+        {% if block.settings.image %}
+          <div class="hero-slide {% if forloop.first %}is-active{% endif %}" style="background-image: url('{{ block.settings.image | image_url: width: 1920 }}')" {{ block.shopify_attributes }}></div>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {%- comment -%} Fallback to product images {%- endcomment -%}
+      {% assign slide_count = 0 %}
+      {% for product in collections.all.products limit: 5 %}
+        {% if product.featured_image %}
+          {% assign slide_count = slide_count | plus: 1 %}
+          <div class="hero-slide {% if forloop.first %}is-active{% endif %}" style="background-image: url('{{ product.featured_image | image_url: width: 1920 }}')"></div>
+        {% endif %}
+      {% endfor %}
+      {% if slide_count == 0 %}
+        <div class="hero-slide is-active" style="background: var(--bg);"></div>
+      {% endif %}
+    {% endif %}
+  </div>
+  <div class="hero-content">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.heading }}</h1>
+      <p class="hero-text">{{ section.settings.subheading }}</p>
+      <div class="hero-actions">
+        {% if section.settings.button_text != blank %}
+          <a class="button button-solid" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+        {% endif %}
+        {% if section.settings.button_text_2 != blank %}
+          <a class="button button-ghost" href="{{ section.settings.button_link_2 }}">{{ section.settings.button_text_2 }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Hero slideshow - smooth crossfade
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return;
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('is-active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('is-active');
+    }, 4000);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Season 04 / Limitless"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Street meets intention."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium streetwear crafted in India. Luxury fabrics, precise detailing, and construction built to be worn and remembered."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop the drop"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_text_2",
+      "label": "Secondary button text",
+      "default": "Explore lookbook"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Slide image",
+          "info": "Recommended: 1920x1080px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

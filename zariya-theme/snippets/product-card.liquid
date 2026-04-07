@@ -1,0 +1,48 @@
+{%- comment -%}
+  Product card matching static-clone design:
+  - Image with badge
+  - Product name and price
+  - View and Quick add buttons
+{%- endcomment -%}
+<article class="product-card reveal">
+  <a class="product-card-media" href="{{ product.url }}">
+    {% if product.compare_at_price > product.price %}
+      <div class="product-card-badge sale">SALE</div>
+    {% else %}
+      <div class="product-card-badge">{{ product.type | upcase | default: 'EDITION' }}</div>
+    {% endif %}
+    <div class="product-card-art">
+      {% if product.featured_image %}
+        <img 
+          class="product-card-image" 
+          src="{{ product.featured_image | image_url: width: 900 }}" 
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          loading="lazy"
+          decoding="async"
+        >
+      {% else %}
+        <div class="product-card-placeholder">
+          <span>ZARIYA</span>
+        </div>
+      {% endif %}
+    </div>
+  </a>
+  <div class="product-card-body">
+    <p class="vendor">{{ product.vendor | default: 'ZARIYA' }}</p>
+    <h3 class="product-title">{{ product.title }}</h3>
+    <div class="price-row">
+      {% if product.compare_at_price > product.price %}
+        <span class="old-price">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+      <span class="price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+        <span class="discount-badge">{{ discount }}% OFF</span>
+      {% endif %}
+    </div>
+    <div class="card-actions">
+      <a class="button button-ghost" href="{{ product.url }}">View</a>
+      <button class="button button-solid" type="button" data-action="quick-add" data-product-id="{{ product.variants.first.id }}">Add</button>
+    </div>
+  </div>
+</article>
